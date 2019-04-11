@@ -6,6 +6,7 @@
 package com.flutterwave.rave.java.service;
 
 import com.flutterwave.rave.java.config.raveConfig;
+import com.flutterwave.rave.java.payload.settlementpayload;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,19 +27,27 @@ public class settlementServices {
     
       private static final Logger LOG = Logger.getLogger(settlementServices.class);
     
-    public String dosettlement(String params) {
+    public String dosettlement(String params, settlementpayload settlementpayload) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.SETTLEMENT_URL));
+            HttpPost post = null;
+                      
+                    if ("1".equals(settlementpayload.getTest())) {
+               post= new HttpPost((raveConfig.SETTLEMENT_URL));
+            } else {
+                post = new HttpPost((raveConfig.SETTLEMENT_URL));
+            }
+
+                    
 
             LOG.info("dosettlement response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 

@@ -44,12 +44,12 @@ public class virtualcardServices {
             }
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -92,12 +92,12 @@ public class virtualcardServices {
             }
 
             LOG.info("dovirtualcardsearch response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -140,11 +140,11 @@ public class virtualcardServices {
             }
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -236,11 +236,11 @@ public class virtualcardServices {
             }
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -283,11 +283,11 @@ public class virtualcardServices {
             }
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -331,11 +331,11 @@ public class virtualcardServices {
 
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 

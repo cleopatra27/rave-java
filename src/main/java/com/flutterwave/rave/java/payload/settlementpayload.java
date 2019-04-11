@@ -12,6 +12,20 @@ package com.flutterwave.rave.java.payload;
 public class settlementpayload {
 
     /**
+     * @return the test
+     */
+    public String getTest() {
+        return test;
+    }
+
+    /**
+     * @param test the test to set
+     */
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    /**
      * @return the page
      */
     public String getPage() {
@@ -78,5 +92,5 @@ public class settlementpayload {
     private String limit;
     private String status;
     private String seckey;
-    
+    private String test;
 }

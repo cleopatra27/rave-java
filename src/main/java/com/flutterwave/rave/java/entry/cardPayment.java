@@ -39,9 +39,10 @@ public class cardPayment {
         InetAddress localhost = InetAddress.getLocalHost();
         cardload.setIP((localhost).toString());
 
+        if(cardload.getTxRef() == null){
         Date date = new Date();
-
         cardload.setTxRef("MC" + date);
+        }
 
         FLWmetaModel flwmetamodel = new FLWmetaModel();
 
@@ -84,13 +85,14 @@ public class cardPayment {
 
 //       String payload = mobilemoneyPayload.toString();
         String payload = new JSONObject(cardpayload).toString();
-        System.out.println("payload is ===>" + payload);
+        ////System.out.println("payload is ===>" + payload);
 
 //        String Encryteddata = tripledes.encryptData(payload, raveConfig.ENCRYPTION_KEY);
         String Encryteddata = tripledes.encryptData(payload, cardpayload.getEncryption_key());
-        System.out.println("Encryteddata is ===>" + Encryteddata);
+        ////System.out.println("Encryteddata is ===>" + Encryteddata);
 
         String response = paymentservices.doflwcardpayment(Encryteddata, cardpayload);
+        //System.out.println("resss 2==>" + response);
 
         JSONObject myObject = new JSONObject(response);
         JSONObject Object = myObject.optJSONObject("data");
@@ -111,7 +113,7 @@ public class cardPayment {
                 response = new JSONObject(suggestedload).toString();
             }
         }
-        System.out.println("response ==>" + response);
+        ////System.out.println("response ==>" + response);
         return response;
     }
 

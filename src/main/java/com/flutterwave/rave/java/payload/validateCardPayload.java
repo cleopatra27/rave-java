@@ -12,6 +12,20 @@ package com.flutterwave.rave.java.payload;
 public class validateCardPayload {
 
     /**
+     * @return the test
+     */
+    public String getTest() {
+        return test;
+    }
+
+    /**
+     * @param test the test to set
+     */
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    /**
      * @return the PBFPubKey
      */
     public String getPBFPubKey() {
@@ -56,5 +70,6 @@ public class validateCardPayload {
     private String PBFPubKey;
     private String transaction_reference;
     private String otp;
+    private String test;
     
 }

@@ -12,6 +12,34 @@ package com.flutterwave.rave.java.payload;
 public class bankPayload {
 
     /**
+     * @return the test
+     */
+    public String getTest() {
+        return test;
+    }
+
+    /**
+     * @param test the test to set
+     */
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    /**
+     * @return the SECKEY
+     */
+    public String getSECKEY() {
+        return SECKEY;
+    }
+
+    /**
+     * @param SECKEY the SECKEY to set
+     */
+    public void setSECKEY(String SECKEY) {
+        this.SECKEY = SECKEY;
+    }
+
+    /**
      * @return the PBFPubKey
      */
     public String getPBFPubKey() {
@@ -266,5 +294,6 @@ public class bankPayload {
     private String txRef;
     private String device_fingerprint;
     private String redirect_url;
-    
+    private String SECKEY;
+    private String test;
 }

@@ -31,10 +31,10 @@ public class validateCardCharge {
         validatecardpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
         
          String payload = new JSONObject(validatecardpayload).toString();
-        System.out.println("payload is ===>" + payload);
+        //System.out.println("payload is ===>" + payload);
         
         verificationServices verificationservices = new verificationServices();
-        String response = verificationservices.docardvalidate(payload);
+        String response = verificationservices.docardvalidate(payload, validatecardpayload);
         
         return response;
     }

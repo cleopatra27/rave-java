@@ -36,6 +36,7 @@ public class raveConfig {
     public static final String PAYMENT_PLAN_SANDBOX_URL = "https://ravesandboxapi.flutterwave.com/v2/gpx/paymentplans/query";
     public static final String PAYMENT_PLAN_LIVE_URL = "https://api.ravepay.co/v2/gpx/paymentplans/query";
     public static final String PAYMENT_PLAN_CANCEL_SANDBOX_URL = "https://ravesandboxapi.flutterwave.com/v2/gpx/paymentplans/";
+        public static final String PAYMENT_PLAN_CANCEL_LIVE_URL = "https://api.ravepay.co/v2/gpx/paymentplans/";
     public static final String BVN_SANDBOX = "https://ravesandboxapi.flutterwave.com/v2/kyc/bvn";
     public static final String BVN_LIVE = "https://api.ravepay.co/v2/kyc/bvn";
     public static final String PAYMENT_PLAN_N_SANDBOX_URL = "https://ravesandboxapi.flutterwave.com/v2/gpx/paymentplans/";
@@ -49,8 +50,11 @@ public class raveConfig {
     public static final String EBILLS_URL = "https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/ebills/";
     public static final String EBILLS_LIVE_URL = "https://api.ravepay.co/flwv3-pug/getpaidx/api/ebills/";
     public static final String SETTLEMENT_URL = "https://ravesandboxapi.flutterwave.com/v2/merchant/settlements";
+    public static final String SETTLEMENT_URL_LIVE = "https://ravesandboxapi.flutterwave.com/v2/merchant/settlements";
     public static final String TRANSACTION_VERIFICATION_URL = "https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/v2/verify";
+    public static final String TRANSACTION_VERIFICATION_URL_LIVE = "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify";
     public static final String TRANSFER_URL = "https://ravesandboxapi.flutterwave.com/v2/gpx/transfers/create";
+    public static final String TRANSFER_URL_live = "https://ravesandboxapi.flutterwave.com/v2/gpx/transfers/create";
     public static final String BULK_TRANSFER_URL = "https://ravesandboxapi.flutterwave.com/v2/gpx/transfers/create_bulk";
     public static final String VALIDATE_CHARGE_URL_SANDBOX = "https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/validatecharge";
     public static final String TOKENIZED_CHARGE_URL_SANDBOX = "https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/tokenized/charge";

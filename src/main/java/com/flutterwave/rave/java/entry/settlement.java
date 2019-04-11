@@ -28,10 +28,10 @@ public class settlement {
     public String dosettlement(settlementpayload settlementpayload) {
         settlementServices settlementservices = new settlementServices();
         
-        settlementpayload.setSeckey(raveConfig.SECRET_KEY);
+//        settlementpayload.setSeckey(raveConfig.SECRET_KEY);
         
         String payload = new JSONObject(settlementpayload).toString();
-        String response = settlementservices.dosettlement(payload);
+        String response = settlementservices.dosettlement(payload, settlementpayload);
         return response;
     }
     

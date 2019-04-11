@@ -10,6 +10,7 @@ import com.flutterwave.rave.java.payload.pamentplancreatepayload;
 import com.flutterwave.rave.java.payload.paymentplanfetch;
 import com.flutterwave.rave.java.service.PaymentServices;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -37,10 +38,10 @@ public class paymentplan {
     public String docreatepayment(pamentplancreatepayload pamentplancreatepayload) {
         PaymentServices paymentservices = new PaymentServices();
         
-        pamentplancreatepayload.setSeckey(raveConfig.SECRET_KEY);
+//        pamentplancreatepayload.setSeckey(raveConfig.SECRET_KEY);
         
         String payload = new JSONObject(pamentplancreatepayload).toString();
-        String response = paymentservices.dopaymentplancreate(payload);
+        String response = paymentservices.dopaymentplancreate(payload, pamentplancreatepayload);
         return response;
     }
     
@@ -51,22 +52,22 @@ public class paymentplan {
     public String dolistpayment(paymentplanfetch paymentplanfetch) {
         PaymentServices paymentservices = new PaymentServices();
         
-        String seckey = raveConfig.SECRET_KEY;
-        paymentplanfetch.setSeckey(seckey);
+//        String seckey = raveConfig.SECRET_KEY;
+//        paymentplanfetch.setSeckey(seckey);
         
         String payload = new JSONObject(paymentplanfetch).toString();
-        String response = paymentservices.dopaymentplanlist(payload);
+        String response = paymentservices.dopaymentplanlist(payload, paymentplanfetch);
         return response;
     }
     
     @POST
     @Path("paymentplan/fetch/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
     @Produces(MediaType.APPLICATION_JSON)
     public String dofetchpayment(@Context HttpServletRequest request) {
         PaymentServices paymentservices = new PaymentServices();
         
-        String seckey = raveConfig.SECRET_KEY;
+//        String seckey = raveConfig.SECRET_KEY;
        String id = null;
          try {
 		 id = new String(request.getParameter("id").getBytes("ISO-8859-1"),"UTF-8");
@@ -77,6 +78,13 @@ public class paymentplan {
          String q = null;
          try {
 		 q = new String(request.getParameter("q").getBytes("ISO-8859-1"),"UTF-8");
+		} catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(paymentplan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+          String seckey = null;
+         try {
+		 seckey = new String(request.getParameter("seckey").getBytes("ISO-8859-1"),"UTF-8");
 		} catch (UnsupportedEncodingException ex) {
             Logger.getLogger(paymentplan.class.getName()).log(Level.SEVERE, null, ex);
         }

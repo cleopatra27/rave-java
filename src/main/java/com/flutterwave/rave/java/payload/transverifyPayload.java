@@ -12,6 +12,20 @@ package com.flutterwave.rave.java.payload;
 public class transverifyPayload {
 
     /**
+     * @return the test
+     */
+    public String getTest() {
+        return test;
+    }
+
+    /**
+     * @param test the test to set
+     */
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    /**
      * @return the txref
      */
     public String getTxref() {
@@ -46,5 +60,6 @@ public class transverifyPayload {
     
     private String txref;
     private String SECKEY;
+    private String test;
     
 }

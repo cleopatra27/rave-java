@@ -42,14 +42,14 @@ public class billPaymentServices {
                 post =  new HttpPost((raveConfig.SANBOX_URL));
             }
 
-            LOG.info("Cellulant query payment request ::: " + params);
+            LOG.info("dobillpaymentflw request ::: " + params);
 
             StringEntity input = new StringEntity(params.toString());
             input.setContentType("application/json");
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
-            LOG.info("Cellulant query payment response code ::: " + response.getStatusLine().getStatusCode());
+            LOG.info("dobillpaymentflw response code ::: " + response.getStatusLine().getStatusCode());
             BufferedReader rd = new BufferedReader(
                     new InputStreamReader(response.getEntity().getContent()));
 
@@ -57,7 +57,7 @@ public class billPaymentServices {
             while ((line = rd.readLine()) != null) {
                 result.append(line);
             }
-            LOG.info(" Cellulant query payment response message " + result.toString());
+            LOG.info(" dobillpaymentflw response message " + result.toString());
             if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
                 return null;
             }

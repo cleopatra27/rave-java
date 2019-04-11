@@ -34,11 +34,11 @@ public class transferServices {
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
-            LOG.info("doqrpayment response code ::: " + response.getStatusLine().getStatusCode());
+            LOG.info("dotransfer response code ::: " + response.getStatusLine().getStatusCode());
             BufferedReader rd = new BufferedReader(
                     new InputStreamReader(response.getEntity().getContent()));
 
@@ -46,7 +46,7 @@ public class transferServices {
             while ((line = rd.readLine()) != null) {
                 result.append(line);
             }
-            LOG.info("doqrpayment request" + result.toString());
+            LOG.info("dotransfer request" + result.toString());
             if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
                 return null;
             }
@@ -72,7 +72,7 @@ public class transferServices {
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 

@@ -1,5 +1,51 @@
-# Direct Charge
+# RAVE JAVA 🍻
+---
+Services implemented are:
+---
+- Card payment
+- Mobile money
+- Payment Validation
+- Virtual cards
+- QR payments
+- Bills
+- Ebills
+- BVN Validation
+- Refunds
+- Tokenized Charge
+- PaymentPlan
+- Subscriptions
+- Bank payments
 
+---
+How to install:
+---
+There are two ways to install this.
+
+## METHOD 1:
+Download RAVE-JAVA
+Add jar file as a Module to your Java project:
+On Intellij IDEA: File -> Project Structure -> Modules -> Dependencies Tab -> Add -> JARs or Directories -> Attach jar
+
+On Netbeans: Project properties -> Libraries -> Compile -> ADD JAR/folder -> Add Jar
+
+## METHOD 2:
+## Maven users
+Add this dependency to your project's POM: 
+
+```java
+<dependency>
+ <groupId>com.flutterwave</groupId>
+    <artifactId>Rave-Java</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
+---
+
+Usage:
+---
+
+## Direct Charge
 ```java
 cardPayment cardPayment = new cardPayment();
 cardLoad cardload = new cardLoad cardload();
@@ -34,16 +80,17 @@ if(myObject.optString("suggested_auth").equals("PIN"))
   cardload.setSuggested_auth("PIN");
   String response_one = cardPayment.doflwcardpayment(cardload);
   
-JSONObject myObject = new JSONObject(response_one);
-JSONObject Object = myObject.optJSONObject("data");
+JSONObject iObject = new JSONObject(response_one);
+JSONObject Object = iObject.optJSONObject("data");
   
-String flwRef = Object.optString("flwRef")
+String transaction_reference = Object.optString("flwRef");
   
 validateCardCharge validatecardcharge = new validateCardCharge();
 validateCardPayload validatecardpayload = new validateCardPayload();
 validatecardpayload.setPBFPubKey(PBFPubKey);
 validatecardpayload.setTransaction_reference(transaction_reference);
-validatecardpayload.setOTP(OTP);
+validatecardpayload.settest(test);
+validatecardpayload.setOtp(OTP);
   
 response = validatecardcharge.doflwcardvalidate(validatecardpayload);
 }
@@ -58,16 +105,17 @@ else if(myObject.optString("suggested_auth").equals("NOAUTH_INTERNATIONAL"))
   cardload.setSuggested_auth("NOAUTH_INTERNATIONAL");
   String response_one = cardPayment.doflwcardpayment(cardload);
   
-JSONObject myObject = new JSONObject(response_one);
-JSONObject Object = myObject.optJSONObject("data");
+JSONObject iObject = new JSONObject(response_one);
+JSONObject Object = iObject.optJSONObject("data");
   
-String flwRef = Object.optString("flwRef")
+String transaction_reference = Object.optString("flwRef")
   
 validateCardCharge validatecardcharge = new validateCardCharge();
 validateCardPayload validatecardpayload = new validateCardPayload();
 validatecardpayload.setPBFPubKey(PBFPubKey);
 validatecardpayload.setTransaction_reference(transaction_reference);
-validatecardpayload.setOTP(OTP);
+validatecardpayload.settest(test);
+validatecardpayload.setOtp(OTP);
   
 response = validatecardcharge.doflwcardvalidate(validatecardpayload);
 }
@@ -316,17 +364,16 @@ Sample code for charging tokenised cards
 
 ```java
 tokenCharge tokencharge = new tokenCharge();
-tokenChargePayload tokenchargepayload = new tokenChargePayload():
+tokenChargePayload tokenchargepayload = new tokenChargePayload();
 tokenchargepayload.setCurrency(currency);
 tokenchargepayload.setToken(token);
 tokenchargepayload.setAmount(amount);
 tokenchargepayload.setEmail(email);
 tokenchargepayload.setFirstname(firstname);
 tokenchargepayload.setLastname(Lastname);
-tokenchargepayload.setIP(ip);
-tokenchargepayload.setTxref(texref);
-tokenchargepayload.setSeckey(Seckey);
-tokenchargepayload.settest(test);
+tokenchargepayload.setTxRef(texref);
+tokenchargepayload.setSECKEY(Seckey);
+tokenchargepayload.setTest(test);
 
 String response = tokencharge.dotokenizedcharge(tokenchargepayload);
 ```
@@ -338,8 +385,63 @@ tokenCharge tokencharge = new tokenCharge();
 tokenChargePayload tokenchargepayload = new tokenChargePayload():
 tokenchargepayload.setEmail(email);
 tokenchargepayload.setToken(token);
-tokenchargepayload.setSeckey(Seckey);
+tokenchargepayload.setSECKEY(Seckey);
 tokenchargepayload.settest(test);
+```
 
 String response = tokencharge.dotokenizedcharge(tokenchargepayload);
+
+## Payment plan
+Sample code to create payment plan
+
+```java
+paymentplan paymentplan = new paymentplan();
+pamentplancreatepayload pamentplancreatepayload = new pamentplancreatepayload();
+pamentplancreatepayload.setSeckey(seckey);
+pamentplancreatepayload.setamount(amount);
+pamentplancreatepayload.setname(name);
+pamentplancreatepayload.setinterval(interval);
+pamentplancreatepayload.setduration(duration);
+pamentplancreatepayload.settest(test);
+
+String response = paymentplan.docreatepayment(pamentplancreatepayload);
+
+```
+
+Sample code to list payment plan
+```java
+paymentplan paymentplan = new paymentplan();
+paymentplanfetch paymentplanfetch = new paymentplanfetch();
+paymentplanfetch.setSeckey(seckey);
+paymentplanfetch.setid(id);
+paymentplanfetch.setq(q);
+paymentplanfetch.settest(test);
+
+String response = paymentplan.dopaymentplanlist(paymentplanfetch);
+
+```
+
+Sample code to cancel payment plan
+```java
+paymentplan paymentplan = new paymentplan();
+paymentplanfetch paymentplanfetch = new paymentplanfetch();
+paymentplanfetch.setid(id);
+paymentplanfetch.setSeckey(seckey);
+paymentplanfetch.settest(test);
+
+String response = paymentplan.dopaymentplanlist(paymentplanfetch);
+
+```
+
+## Verify Transactions
+Sample code to verify transactions
+
+```java
+transValidation transValidation = . new transValidation();
+transverifyPayload transverifyPayload . = new transverifyPayload();
+transverifyPayload.setSECKEY(sckey);
+transverifyPayload.settxref(txref);
+transverifyPayload.setTest(test);
+
+String response = transValidation.bvnvalidate(transverifyPayload);
 ```

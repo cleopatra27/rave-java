@@ -7,9 +7,11 @@ package com.flutterwave.rave.java.service;
 
 import com.flutterwave.rave.java.config.raveConfig;
 import com.flutterwave.rave.java.payload.FLWmetaModel;
+import com.flutterwave.rave.java.payload.bankPayload;
 import com.flutterwave.rave.java.payload.cardLoad;
 import com.flutterwave.rave.java.payload.cardPayload;
 import com.flutterwave.rave.java.payload.mobilemoneyPayload;
+import com.flutterwave.rave.java.payload.pamentplancreatepayload;
 import com.flutterwave.rave.java.payload.pay_load;
 import com.flutterwave.rave.java.payload.paymentplanfetch;
 import com.flutterwave.rave.java.payload.qrcodePayload;
@@ -38,14 +40,20 @@ public class PaymentServices {
 
     private static final Logger LOG = Logger.getLogger(PaymentServices.class);
 
-    public String doflwbankpayment(String params) {
+    public String doflwbankpayment(String params, bankPayload bankpayload) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.SANDBOX_CHARGE_URL));
+            HttpPost post = null;
+
+            if ("1".equals(bankpayload.getTest())) {
+                post = new HttpPost((raveConfig.SANDBOX_CHARGE_URL));
+            } else {
+                post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
+            }
 
             LOG.info("flwbankpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             //    {
 //  "PBFPubKey": "FLWPUBK-7adb6177bd71dd43c2efa3f1229e3b7f-X",
@@ -64,7 +72,7 @@ public class PaymentServices {
 
             StringEntity input = new StringEntity(requestJSON.toString());
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -99,7 +107,7 @@ public class PaymentServices {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
             HttpPost post = null;
-            
+
             if ("1".equals(mobilemoneyPayload.getTest())) {
                 post = new HttpPost((raveConfig.SANDBOXMOBILEMONEY_CHARGE_URL));
             } else {
@@ -107,7 +115,7 @@ public class PaymentServices {
             }
 
             LOG.info("doflwmobilemoney response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             pay_load pay_load = new pay_load();
 //            pay_load.setPBFPubKey(raveConfig.PUBLIC_KEY);
@@ -120,7 +128,7 @@ public class PaymentServices {
             requestJSON.put("PBFPubKey", mobilemoneyPayload.getPublic_key());
             requestJSON.put("client", params);
             requestJSON.put("alg", raveConfig.alg);
-            System.out.println("requestJSON ==>" + requestJSON.toString());
+            //System.out.println("requestJSON ==>" + requestJSON.toString());
 
             StringEntity input = new StringEntity(requestJSON.toString());
             input.setContentType("application/json");
@@ -160,13 +168,13 @@ public class PaymentServices {
             HttpPost post = null;
 
             if ("1".equals(qrcodepayload.getTest())) {
-                post =  new HttpPost((raveConfig.SANDBOX_CHARGE_URL));
+                post = new HttpPost((raveConfig.SANDBOX_CHARGE_URL));
             } else {
                 post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
             }
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             pay_load pay_load = new pay_load();
             pay_load.setPBFPubKey(raveConfig.PUBLIC_KEY);
@@ -180,7 +188,7 @@ public class PaymentServices {
 
             StringEntity input = new StringEntity(requestJSON.toString());
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -213,22 +221,21 @@ public class PaymentServices {
     public String dorefund(String params, refundPayload refundpayload) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
-            
+
             HttpPost post = null;
 
             if ("1".equals(refundpayload.getTest())) {
-                post =  new HttpPost((raveConfig.SANDBOX_REFUND_URL));
+                post = new HttpPost((raveConfig.SANDBOX_REFUND_URL));
             } else {
                 post = new HttpPost((raveConfig.LIVE_REFUND_URL));
             }
 
-
             LOG.info("dorefund response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -258,19 +265,26 @@ public class PaymentServices {
         return null;
     }
 
-    public String dopaymentplancreate(String params) {
+    public String dopaymentplancreate(String params, pamentplancreatepayload pamentplancreatepayload) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.PAYMENT_PLAN_CREATE_SANDBOX_URL));
+            HttpPost post = null;
+
+            if ("1".equals(pamentplancreatepayload.getTest())) {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_CREATE_SANDBOX_URL));
+            } else {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_CREATE_LIVE_URL));
+            }
+
             post.setHeader("ContentType", "application/json");
 
             LOG.info("dorefund response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -300,19 +314,26 @@ public class PaymentServices {
         return null;
     }
 
-    public String dopaymentplanlist(String params) {
+    public String dopaymentplanlist(String params, paymentplanfetch paymentplanfetch) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.PAYMENT_PLAN_SANDBOX_URL));
+            HttpPost post = null;
+
+            if ("1".equals(paymentplanfetch.getTest())) {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_SANDBOX_URL));
+            } else {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_LIVE_URL));
+            }
+
             post.setHeader("ContentType", "application/json");
 
             LOG.info("dorefund response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -398,7 +419,14 @@ public class PaymentServices {
             String id = paymentplanfetch.getId();
             String seckey = raveConfig.SECRET_KEY;
 
-            HttpPost post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_SANDBOX_URL + id + "/cancel"));
+            HttpPost post = null;
+
+            if ("1".equals(paymentplanfetch.getTest())) {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_SANDBOX_URL + id + "/cancel"));
+            } else {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_LIVE_URL + id + "/cancel"));
+            }
+
             post.setHeader("ContentType", "application/json");
 
             JSONObject queryRequest = new JSONObject()
@@ -406,7 +434,7 @@ public class PaymentServices {
 
             StringEntity input = new StringEntity(queryRequest.toString());
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
 
             HttpResponse response = client.execute(post);
@@ -481,7 +509,13 @@ public class PaymentServices {
 
             String id = paymentplanfetch.getId();
 
-            HttpPost post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_SANDBOX_URL + id + "/cancel"));
+            HttpPost post = null;
+
+            if ("1".equals(paymentplanfetch.getTest())) {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_SANDBOX_URL + id + "/edit"));
+            } else {
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_LIVE_URL + id + "/edit"));
+            }
             post.setHeader("ContentType", "application/json");
 
             JSONObject queryRequest = new JSONObject()
@@ -491,7 +525,7 @@ public class PaymentServices {
 
             StringEntity input = new StringEntity(queryRequest.toString());
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
 
             HttpResponse response = client.execute(post);
@@ -534,7 +568,7 @@ public class PaymentServices {
 //            
 //            StringEntity input = new StringEntity(params);
 //            input.setContentType("application/json");
-//            System.out.println("input ===>" + input);
+//            //System.out.println("input ===>" + input);
 //            post.setEntity(input);
 //            
 //            HttpResponse response = client.execute(post);
@@ -576,8 +610,7 @@ public class PaymentServices {
                 post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
             }
 
-            System.out.println(params);
-
+            //System.out.println(params);
             LOG.info("doflwcardpayment query payment request ::: " + params);
 
             pay_load pay_load = new pay_load();
@@ -622,7 +655,7 @@ public class PaymentServices {
     public String dotokencharge(String params, tokenChargePayload tokenchargepayload) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
-            
+
             HttpPost post = null;
 
             if ("1".equals(tokenchargepayload.getTest())) {
@@ -631,13 +664,12 @@ public class PaymentServices {
                 post = new HttpPost((raveConfig.TOKENIZED_CHARGE_URL_LIVE));
             }
 
-
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -672,7 +704,7 @@ public class PaymentServices {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
             String embed_token = tokenchargepayload.getToken();
-         
+
             HttpPost post = null;
 
             if ("1".equals(tokenchargepayload.getTest())) {
@@ -682,7 +714,7 @@ public class PaymentServices {
             }
 
             LOG.info("doqrpayment response ::: " + tokenchargepayload);
-            System.out.println("params ===>" + tokenchargepayload);
+            //System.out.println("params ===>" + tokenchargepayload);
 
             JSONObject requestJSON = new JSONObject();
             requestJSON.put("email", tokenchargepayload.getEmail());

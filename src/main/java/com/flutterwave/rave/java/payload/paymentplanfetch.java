@@ -12,6 +12,20 @@ package com.flutterwave.rave.java.payload;
 public class paymentplanfetch {
 
     /**
+     * @return the test
+     */
+    public String getTest() {
+        return test;
+    }
+
+    /**
+     * @param test the test to set
+     */
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    /**
      * @return the name
      */
     public String getName() {
@@ -86,4 +100,5 @@ public class paymentplanfetch {
     private String q;
     private String name;
     private String status;
+    private String test;
 }
