@@ -36,7 +36,7 @@ Add this dependency to your project's POM:
 <dependency>
  <groupId>com.flutterwave</groupId>
     <artifactId>Rave-Java</artifactId>
-    <version>1.0</version>
+    <version>1.01</version>
 </dependency>
 ```
 
