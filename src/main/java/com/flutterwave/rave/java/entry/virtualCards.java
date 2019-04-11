@@ -11,24 +11,15 @@ import com.flutterwave.rave.java.payload.fundcardpayload;
 import com.flutterwave.rave.java.payload.virtualcardpayload;
 import com.flutterwave.rave.java.payload.withdrawcardpayload;
 import com.flutterwave.rave.java.service.virtualcardServices;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
 
 /**
  *
  * @author cleopatradouglas
  */
-@Path("/")
+
 public class virtualCards {
-    
-    @POST
-    @Path("virtualcard/create/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
+
     public String dovirtualcardcreate(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
@@ -47,10 +38,6 @@ public class virtualCards {
     }
     
     
-     @POST
-    @Path("virtualcard/search/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dovirtualcardsearch(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
@@ -61,10 +48,6 @@ public class virtualCards {
         return response;
     }
     
-    @POST
-    @Path("virtualcard/get/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dovirtualcardget(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
@@ -75,10 +58,6 @@ public class virtualCards {
         return response;
     }
     
-    @POST
-    @Path("virtualcard/terminate/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dovirtualcardterminate(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
@@ -88,10 +67,6 @@ public class virtualCards {
         return response;
     }
     
-    @POST
-    @Path("virtualcard/fund/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dovirtualcardfund(fundcardpayload fundcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
@@ -102,10 +77,6 @@ public class virtualCards {
         return response;
     }
     
-     @POST
-    @Path("virtualcard/trans/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dovirtualcardfetchtrans(fetchcardpayload fetchcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
@@ -114,10 +85,6 @@ public class virtualCards {
         return response;
     }
     
-     @POST
-    @Path("virtualcard/withdraw/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dovirtualcardfwithdraw(withdrawcardpayload withdrawcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         

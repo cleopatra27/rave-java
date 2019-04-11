@@ -10,11 +10,6 @@ import com.flutterwave.rave.java.payload.bulkPayload;
 import com.flutterwave.rave.java.payload.transferPayload;
 import com.flutterwave.rave.java.service.transferServices;
 import java.util.Date;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
 
 /**
@@ -23,10 +18,6 @@ import org.json.JSONObject;
  */
 public class transfers {
 
-    @POST
-    @Path("transfers/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dotransfer(transferPayload transferPayload) {
         transferServices transferServices = new transferServices();
 
@@ -41,10 +32,6 @@ public class transfers {
         return response;
     }
 
-    @POST
-    @Path("transfers/bulk/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dobulktransfer(bulkPayload bulkPayload) {
         transferServices transferServices = new transferServices();
 

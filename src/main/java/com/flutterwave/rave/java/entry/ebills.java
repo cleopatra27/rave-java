@@ -19,13 +19,8 @@ import org.json.JSONObject;
  *
  * @author cleopatradouglas
  */
-@Path("/")
 public class ebills {
     
-     @POST
-    @Path("ebills/create/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String doebillscreate(ebillpayload ebillpayload) {
         ebillServices ebillServices = new ebillServices();
         
@@ -37,10 +32,7 @@ public class ebills {
         return response;
     }
     
-     @POST
-    @Path("ebills/update/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
+
     public String doebillsupdate(ebillpayload ebillpayload) {
         ebillServices ebillServices = new ebillServices();
         

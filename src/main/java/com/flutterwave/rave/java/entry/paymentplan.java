@@ -5,36 +5,24 @@
  */
 package com.flutterwave.rave.java.entry;
 
-import com.flutterwave.rave.java.config.raveConfig;
 import com.flutterwave.rave.java.payload.pamentplancreatepayload;
 import com.flutterwave.rave.java.payload.paymentplanfetch;
 import com.flutterwave.rave.java.service.PaymentServices;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
 
 /**
  *
  * @author cleopatradouglas
  */
-@Path("/")
 public class paymentplan {
 
-    @POST
-    @Path("paymentplan/create/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String docreatepayment(pamentplancreatepayload pamentplancreatepayload) {
         PaymentServices paymentservices = new PaymentServices();
         
@@ -45,10 +33,7 @@ public class paymentplan {
         return response;
     }
     
-    @POST
-    @Path("paymentplan/list/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
+
     public String dolistpayment(paymentplanfetch paymentplanfetch) {
         PaymentServices paymentservices = new PaymentServices();
         
@@ -60,10 +45,6 @@ public class paymentplan {
         return response;
     }
     
-    @POST
-    @Path("paymentplan/fetch/v1")
-    @Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String dofetchpayment(@Context HttpServletRequest request) {
         PaymentServices paymentservices = new PaymentServices();
         
@@ -97,10 +78,7 @@ public class paymentplan {
         return response;
     }
     
-      @POST
-    @Path("paymentplan/cancel/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
+
     public String docancelpayment(paymentplanfetch paymentplanfetch) {
         PaymentServices paymentservices = new PaymentServices();
 
@@ -161,10 +139,7 @@ public class paymentplan {
 //        return response;
 //    }
     
-     @POST
-    @Path("paymentplan/edit/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
+
     public String doeditpayment(paymentplanfetch paymentplanfetch) {
         PaymentServices paymentservices = new PaymentServices();
 
