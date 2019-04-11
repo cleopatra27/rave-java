@@ -36,13 +36,8 @@ public class verificationServices {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             String seckey = raveConfig.SECRET_KEY;
             String bvn = bvnload.getBvn();
-            HttpGet httpGet = null;
-
-            if ("1".equals(bvnload.getTest())) {
-                httpGet = new HttpGet(raveConfig.BVN_SANDBOX + "/" + bvn + "?seckey=" + seckey + "");
-            } else {
-                httpGet = new HttpGet(raveConfig.BVN_LIVE + "/" + bvn + "?seckey=" + seckey + "");
-            }
+            HttpGet httpGet = new HttpGet(raveConfig.BVN_LIVE + "/" + bvn + "?seckey=" + seckey + "");
+            
 
             httpGet.setHeader("Content-Type", "application/json");
 
@@ -76,13 +71,8 @@ public class verificationServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(transverifyPayload.getTest())) {
-                post = new HttpPost((raveConfig.TRANSACTION_VERIFICATION_URL));
-            } else {
-                post = new HttpPost((raveConfig.TRANSACTION_VERIFICATION_URL_LIVE));
-            }
+            HttpPost post  = new HttpPost((raveConfig.TRANSACTION_VERIFICATION_URL_LIVE));
+            
 
             LOG.info("dotransverify response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -123,13 +113,7 @@ public class verificationServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(validatecardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VALIDATE_CHARGE_URL_SANDBOX));
-            } else {
-                post = new HttpPost((raveConfig.VALIDATE_CHARGE_URL_SANDBOX));
-            }
+            HttpPost post = new HttpPost((raveConfig.VALIDATE_CHARGE_URL));
 
             LOG.info("docardvalidate response ::: " + params);
             //System.out.println("params ===>" + params);

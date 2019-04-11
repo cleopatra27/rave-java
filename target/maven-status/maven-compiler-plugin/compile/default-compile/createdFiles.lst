@@ -6,7 +6,6 @@ com/flutterwave/rave/java/service/billPaymentServices.class
 com/flutterwave/rave/java/entry/mobileMoney.class
 com/flutterwave/rave/java/entry/bvnValidation.class
 com/flutterwave/rave/java/payload/validateCardPayload.class
-com/flutterwave/rave/java/service/settlementServices.class
 com/flutterwave/rave/java/entry/validateCardCharge.class
 com/flutterwave/rave/java/payload/FLWmetaModel.class
 com/flutterwave/rave/java/config/raveConfig.class
@@ -27,7 +26,6 @@ com/flutterwave/rave/java/payload/service_payload.class
 com/flutterwave/rave/java/payload/bulkdataPayload.class
 com/flutterwave/rave/java/payload/fundcardpayload.class
 com/flutterwave/rave/java/entry/bills.class
-com/flutterwave/rave/java/entry/settlement.class
 com/flutterwave/rave/java/payload/cardPayload.class
 com/flutterwave/rave/java/service/ebillServices.class
 com/flutterwave/rave/java/entry/virtualCards.class

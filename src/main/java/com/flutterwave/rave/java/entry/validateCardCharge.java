@@ -28,7 +28,7 @@ public class validateCardCharge {
     @Produces(MediaType.APPLICATION_JSON)
     public String doflwcardvalidate(validateCardPayload validatecardpayload){
         
-        validatecardpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
+       // validatecardpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
         
          String payload = new JSONObject(validatecardpayload).toString();
         //System.out.println("payload is ===>" + payload);

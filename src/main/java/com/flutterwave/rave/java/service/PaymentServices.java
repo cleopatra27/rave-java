@@ -44,13 +44,8 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(bankpayload.getTest())) {
-                post = new HttpPost((raveConfig.SANDBOX_CHARGE_URL));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
-            }
+            HttpPost post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
+       
 
             LOG.info("flwbankpayment response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -106,13 +101,7 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(mobilemoneyPayload.getTest())) {
-                post = new HttpPost((raveConfig.SANDBOXMOBILEMONEY_CHARGE_URL));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
-            }
+            HttpPost post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
 
             LOG.info("doflwmobilemoney response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -165,13 +154,7 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(qrcodepayload.getTest())) {
-                post = new HttpPost((raveConfig.SANDBOX_CHARGE_URL));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
-            }
+            HttpPost post  = new HttpPost((raveConfig.LIVE_CHARGE_URL));
 
             LOG.info("doqrpayment response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -222,13 +205,7 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(refundpayload.getTest())) {
-                post = new HttpPost((raveConfig.SANDBOX_REFUND_URL));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_REFUND_URL));
-            }
+            HttpPost post = new HttpPost((raveConfig.LIVE_REFUND_URL));
 
             LOG.info("dorefund response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -269,13 +246,8 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(pamentplancreatepayload.getTest())) {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_CREATE_SANDBOX_URL));
-            } else {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_CREATE_LIVE_URL));
-            }
+            HttpPost post  = new HttpPost((raveConfig.PAYMENT_PLAN_CREATE_LIVE_URL));
+       
 
             post.setHeader("ContentType", "application/json");
 
@@ -318,13 +290,8 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
+            HttpPost post  = new HttpPost((raveConfig.PAYMENT_PLAN_LIVE_URL));
 
-            if ("1".equals(paymentplanfetch.getTest())) {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_SANDBOX_URL));
-            } else {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_LIVE_URL));
-            }
 
             post.setHeader("ContentType", "application/json");
 
@@ -374,13 +341,13 @@ public class PaymentServices {
             HttpPost post = null;
 
             if (id != null && q != null) {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_SANDBOX_URL + seckey + id + q));
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_LIVE_URL + seckey + id + q));
             } else if (id != null) {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_SANDBOX_URL + seckey + id));
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_LIVE_URL + seckey + id));
             } else if (q != null) {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_SANDBOX_URL + seckey + q));
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_LIVE_URL + seckey + q));
             } else {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_SANDBOX_URL + seckey));
+                post = new HttpPost((raveConfig.PAYMENT_PLAN_LIVE_URL + seckey));
             }
             post.setHeader("Content-Type", "application/json");
 
@@ -419,13 +386,8 @@ public class PaymentServices {
             String id = paymentplanfetch.getId();
             String seckey = raveConfig.SECRET_KEY;
 
-            HttpPost post = null;
-
-            if ("1".equals(paymentplanfetch.getTest())) {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_SANDBOX_URL + id + "/cancel"));
-            } else {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_LIVE_URL + id + "/cancel"));
-            }
+            HttpPost post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_LIVE_URL + id + "/cancel"));
+            
 
             post.setHeader("ContentType", "application/json");
 
@@ -509,13 +471,8 @@ public class PaymentServices {
 
             String id = paymentplanfetch.getId();
 
-            HttpPost post = null;
-
-            if ("1".equals(paymentplanfetch.getTest())) {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_SANDBOX_URL + id + "/edit"));
-            } else {
-                post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_LIVE_URL + id + "/edit"));
-            }
+            HttpPost post = new HttpPost((raveConfig.PAYMENT_PLAN_CANCEL_LIVE_URL + id + "/edit"));
+            
             post.setHeader("ContentType", "application/json");
 
             JSONObject queryRequest = new JSONObject()
@@ -602,13 +559,8 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(cardpayload.getTest())) {
-                post = new HttpPost((raveConfig.SANDBOX_CHARGE_URL));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
-            }
+            HttpPost post = new HttpPost((raveConfig.LIVE_CHARGE_URL));
+          
 
             //System.out.println(params);
             LOG.info("doflwcardpayment query payment request ::: " + params);
@@ -656,13 +608,8 @@ public class PaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(tokenchargepayload.getTest())) {
-                post = new HttpPost((raveConfig.TOKENIZED_CHARGE_URL_SANDBOX));
-            } else {
-                post = new HttpPost((raveConfig.TOKENIZED_CHARGE_URL_LIVE));
-            }
+            HttpPost post  = new HttpPost((raveConfig.TOKENIZED_CHARGE_URL_LIVE));
+            
 
             LOG.info("doqrpayment response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -705,13 +652,8 @@ public class PaymentServices {
 
             String embed_token = tokenchargepayload.getToken();
 
-            HttpPost post = null;
-
-            if ("1".equals(tokenchargepayload.getTest())) {
-                post = new HttpPost((raveConfig.TOKEN_UPDATE_URL_SANDBOX + embed_token + "/update_customer"));
-            } else {
-                post = new HttpPost((raveConfig.TOKEN_UPDATE_URL_LIVE + embed_token + "/update_customer"));
-            }
+            HttpPost post = new HttpPost((raveConfig.TOKEN_UPDATE_URL_LIVE + embed_token + "/update_customer"));
+           
 
             LOG.info("doqrpayment response ::: " + tokenchargepayload);
             //System.out.println("params ===>" + tokenchargepayload);

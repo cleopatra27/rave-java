@@ -30,7 +30,7 @@ public class transferServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.TRANSFER_URL));
+            HttpPost post = new HttpPost((raveConfig.TRANSFER_URL+"create"));
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
@@ -68,7 +68,7 @@ public class transferServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.BULK_TRANSFER_URL));
+            HttpPost post = new HttpPost((raveConfig.TRANSFER_URL +"create_bulk"));
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");

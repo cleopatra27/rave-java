@@ -34,14 +34,8 @@ public class billPaymentServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(billmodel.getTest())) {
-               post=  new HttpPost((raveConfig.SANBOX_URL));
-            } else {
-                post =  new HttpPost((raveConfig.SANBOX_URL));
-            }
-
+            HttpPost post  =  new HttpPost((raveConfig.LIVE_URL));
+            
             LOG.info("dobillpaymentflw request ::: " + params);
 
             StringEntity input = new StringEntity(params.toString());

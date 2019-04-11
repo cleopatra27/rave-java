@@ -35,7 +35,7 @@ public class accountServices {
             
             String seckey = raveConfig.SECRET_KEY;
 
-            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_LIST_SANDBOX_URL+seckey));
+            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_LIST_URL+seckey));
             post.setHeader("ContentType", "application/json");
             HttpResponse response = client.execute(post);
 
@@ -72,7 +72,7 @@ public class accountServices {
              String transaction_id = suscriptionfetch.getTransaction_id();
              String seckey = raveConfig.SECRET_KEY;
 
-            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_LIST_SANDBOX_URL+seckey+transaction_id));
+            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_LIST_URL+seckey+transaction_id));
             post.setHeader("ContentType", "application/json");
              
             HttpResponse response = client.execute(post);
@@ -110,7 +110,7 @@ public class accountServices {
               String id = suscriptionfetch.getId();
               String fetch_by_tx = suscriptionfetch.getFetch_by_tx();
 
-            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_SANDBOX_URL+id+"/cancel"+fetch_by_tx));
+            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_URL+id+"/cancel"+fetch_by_tx));
             post.setHeader("ContentType", "application/json");
             
             JSONObject queryRequest = new JSONObject()
@@ -156,7 +156,7 @@ public class accountServices {
               String id = suscriptionfetch.getId();
               String fetch_by_tx = suscriptionfetch.getFetch_by_tx();
 
-            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_SANDBOX_URL+id+"/activate"+fetch_by_tx));
+            HttpPost post = new HttpPost((raveConfig.SUSCRIPTION_URL+id+"/activate"+fetch_by_tx));
             post.setHeader("ContentType", "application/json");
             
             JSONObject queryRequest = new JSONObject()

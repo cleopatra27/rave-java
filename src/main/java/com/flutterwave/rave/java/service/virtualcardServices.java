@@ -35,13 +35,8 @@ public class virtualcardServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(virtualcardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VIRTUAL_CARD_CREATE_URL+"new"));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"new"));
-            }
+            HttpPost post  = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"new"));
+           
 
             LOG.info("doqrpayment response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -83,13 +78,8 @@ public class virtualcardServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = null;
-
-            if ("1".equals(virtualcardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VIRTUAL_CARD_CREATE_URL+"search"));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"search"));
-            }
+            HttpPost post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"search"));
+           
 
             LOG.info("dovirtualcardsearch response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -131,13 +121,8 @@ public class virtualcardServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             
-             HttpPost post = null;
-
-            if ("1".equals(virtualcardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VIRTUAL_CARD_CREATE_URL+"get"));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"get"));
-            }
+             HttpPost post  = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"get"));
+            
 
             LOG.info("doqrpayment response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -180,13 +165,8 @@ public class virtualcardServices {
             
             String id = virtualcardpayload.getId();
             
-             HttpPost post = null;
-
-            if ("1".equals(virtualcardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VIRTUAL_CARD_CREATE_URL+id+"terminate"));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+id+"terminate"));
-            }
+             HttpPost post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+id+"terminate"));
+            
 
             JSONObject requestJSON = new JSONObject();
             requestJSON.put("secret_key", raveConfig.SECRET_KEY);
@@ -227,13 +207,8 @@ public class virtualcardServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             
-            HttpPost post = null;
-
-            if ("1".equals(fetchcardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VIRTUAL_CARD_CREATE_URL+"transactions"));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"transactions"));
-            }
+            HttpPost post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"transactions"));
+            
 
             LOG.info("doqrpayment response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -274,13 +249,8 @@ public class virtualcardServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             
-             HttpPost post = null;
-
-            if ("1".equals(withdrawcardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VIRTUAL_CARD_CREATE_URL+"withdraw"));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"withdraw"));
-            }
+             HttpPost post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_CREATE_URL+"withdraw"));
+            
 
             LOG.info("doqrpayment response ::: " + params);
             //System.out.println("params ===>" + params);
@@ -321,13 +291,8 @@ public class virtualcardServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             
-            HttpPost post = null;
-
-            if ("1".equals(fundcardpayload.getTest())) {
-                post = new HttpPost((raveConfig.VIRTUAL_CARD_FUND_URL));
-            } else {
-                post = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_FUND_URL));
-            }
+            HttpPost post  = new HttpPost((raveConfig.LIVE_VIRTUAL_CARD_FUND_URL));
+            
 
 
             LOG.info("doqrpayment response ::: " + params);
