@@ -37,6 +37,7 @@ public class raveConfig {
     public static final String LIVE_VIRTUAL_CARD_CREATE_URL = "https://api.ravepay.co/v2/services/virtualcards/new";
     public static final String LIVE_VIRTUAL_CARD_FUND_URL = "https://api.ravepay.co/v2/services/virtualcards/fund";
     public static final String EBILLS_LIVE_URL = "https://api.ravepay.co/flwv3-pug/getpaidx/api/ebills/";
+    public static final String SUBACCOUNT_LIST_URL = "https://api.ravepay.co/v2/gpx/subaccounts";
 //    public static final String SETTLEMENT_URL_LIVE = "https://ravesandboxapi.flutterwave.com/v2/merchant/settlements";
     public static final String TRANSACTION_VERIFICATION_URL_LIVE = "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify";
     public static final String TRANSFER_URL = "https://api.ravepay.co/v2/gpx/transfers/";

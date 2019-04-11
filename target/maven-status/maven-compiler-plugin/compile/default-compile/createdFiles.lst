@@ -41,6 +41,7 @@ com/flutterwave/rave/java/payload/billLoad.class
 com/flutterwave/rave/java/service/transferServices.class
 com/flutterwave/rave/java/payload/webhookCustomerPayload.class
 com/flutterwave/rave/java/service/verificationServices.class
+com/flutterwave/rave/java/payload/subaccountpayload.class
 com/flutterwave/rave/java/payload/metaTransferpayload.class
 com/flutterwave/rave/java/payload/webhookTransferPayload.class
 com/flutterwave/rave/java/payload/pay_load.class
