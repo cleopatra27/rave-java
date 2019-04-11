@@ -36,7 +36,7 @@ Add this dependency to your project's POM:
 <dependency>
  <groupId>com.flutterwave</groupId>
     <artifactId>Rave-Java</artifactId>
-    <version>1.01</version>
+    <version>1.02</version>
 </dependency>
 ```
 
@@ -412,10 +412,65 @@ String response = paymentplan.dopaymentplanlist(paymentplanfetch);
 Sample code to verify transactions
 
 ```java
-transValidation transValidation = . new transValidation();
+transValidation transValidation = new transValidation();
 transverifyPayload transverifyPayload . = new transverifyPayload();
 transverifyPayload.setSECKEY(sckey);
 transverifyPayload.settxref(txref);
 
 String response = transValidation.bvnvalidate(transverifyPayload);
+```
+
+## Subaccount
+Sample code to list subaccounts
+
+```java
+subaccounts subaccounts = new subaccounts();
+subaccountpayload subaccountpayload = new subaccountpayload();
+subaccountpayload.setSECKEY(sckey);
+
+String response = subaccounts.dosubaccountslist(subaccountpayload);
+```
+
+Sample code to get a subaccount
+
+```java
+subaccounts subaccounts = new subaccounts();
+subaccountpayload subaccountpayload = new subaccountpayload();
+subaccountpayload.setSECKEY(sckey);
+subaccountpayload.setId(id);
+
+String response = subaccounts.dosubaccountsget(subaccountpayload);
+```
+
+Sample code to create a subaccount
+
+```java
+subaccounts subaccounts = new subaccounts();
+subaccountpayload subaccountpayload = new subaccountpayload();
+
+subaccountpayload.setSECKEY(seckey);
+subaccountpayload.setaccount_bank(account_bank);
+subaccountpayload.setaccount_number(account_number);
+subaccountpayload.setbusiness_name(business_name);
+subaccountpayload.setbusiness_email(business_email);
+subaccountpayload.setbusiness_contact(business_contact);
+subaccountpayload.setbusiness_contact_mobile(business_contact_mobile);
+subaccountpayload.setmetaname(metaname);
+subaccountpayload.setmetavalue(metavalue);
+
+String response = subaccounts.dosubaccountscreate(subaccountpayload);
+```
+
+Sample code to delete a subaccount
+
+```java
+subaccounts subaccounts = new subaccounts();
+subaccountpayload subaccountpayload = new subaccountpayload();
+
+subaccounts subaccounts = new subaccounts();
+subaccountpayload subaccountpayload = new subaccountpayload();
+subaccountpayload.setSECKEY(sckey);
+subaccountpayload.setId(id);
+
+String response = subaccounts.dosubaccountsdelete(subaccountpayload);
 ```

@@ -7,6 +7,7 @@ package com.flutterwave.rave.java.service;
 
 import com.flutterwave.rave.java.config.raveConfig;
 import com.flutterwave.rave.java.payload.paymentplanfetch;
+import com.flutterwave.rave.java.payload.subaccountpayload;
 import com.flutterwave.rave.java.payload.suscriptionfetch;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -178,6 +180,159 @@ public class accountServices {
                 result.append(line);
             }
             LOG.info("doactivatesubscription request" + result.toString());
+            if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
+                return null;
+            }
+            if (response.getStatusLine().getStatusCode() == 500) {
+                return "there is an error with the data";
+            } else {
+                return result.toString();
+            }
+
+        } catch (UnsupportedEncodingException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        } catch (IOException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        }
+        return null;
+    }
+ public String dolistsubaccounts(subaccountpayload subaccountpayload) {
+        StringBuilder result = new StringBuilder();
+        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
+
+            String seckey = subaccountpayload.getSeckey();
+
+            HttpGet httpget = new HttpGet(raveConfig.SUBACCOUNT_LIST_URL+"?seckey="+seckey);
+            httpget.setHeader("ContentType", "application/json");
+            HttpResponse response = client.execute(httpget);
+
+            LOG.info("dolistsubaccounts response code ::: " + response.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            LOG.info("dolistsubaccounts request" + result.toString());
+            if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
+                return null;
+            }
+            if (response.getStatusLine().getStatusCode() == 500) {
+                return "there is an error with the data";
+            } else {
+                return result.toString();
+            }
+
+        } catch (UnsupportedEncodingException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        } catch (IOException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        }
+        return null;
+    }
+    
+    public String dogetsubaccounts(subaccountpayload subaccountpayload) {
+        StringBuilder result = new StringBuilder();
+        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
+
+            String id = subaccountpayload.getSeckey();
+            String seckey = subaccountpayload.getSeckey();
+
+            HttpGet httpget = new HttpGet((raveConfig.SUBACCOUNT_LIST_URL + "/get/" + id + "?seckey=" + seckey+ ""));
+            httpget.setHeader("ContentType", "application/json");
+            
+            HttpResponse response = client.execute(httpget);
+
+            LOG.info("dogetsubaccounts response code ::: " + response.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            LOG.info("dogetsubaccounts request" + result.toString());
+            if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
+                return null;
+            }
+            if (response.getStatusLine().getStatusCode() == 500) {
+                return "there is an error with the data";
+            } else {
+                return result.toString();
+            }
+
+        } catch (UnsupportedEncodingException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        } catch (IOException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        }
+        return null;
+    }
+    
+     public String docreatesubaccounts(subaccountpayload subaccountpayload) {
+        StringBuilder result = new StringBuilder();
+        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
+
+            HttpPost post = new HttpPost((raveConfig.SUBACCOUNT_LIST_URL + "/create" ));
+            post.setHeader("ContentType", "application/json");
+            
+            StringEntity input = new StringEntity(new JSONObject(subaccountpayload).toString());
+            input.setContentType("application/json");
+            System.out.println("input ===>" + input);
+            post.setEntity(input);
+            
+            HttpResponse response = client.execute(post);
+
+            LOG.info("docreatesubaccounts response code ::: " + response.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            LOG.info("docreatesubaccounts request" + result.toString());
+            if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
+                return null;
+            }
+            if (response.getStatusLine().getStatusCode() == 500) {
+                return "there is an error with the data";
+            } else {
+                return result.toString();
+            }
+
+        } catch (UnsupportedEncodingException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        } catch (IOException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        }
+        return null;
+    }
+     
+     public String dodeletesubaccounts(subaccountpayload subaccountpayload) {
+        StringBuilder result = new StringBuilder();
+        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
+
+            HttpPost post = new HttpPost("https://api.ravepay.co/v2/gpx/subaccounts/delete");
+            post.setHeader("ContentType", "application/json");
+            
+             StringEntity input = new StringEntity(new JSONObject(subaccountpayload).toString());
+            input.setContentType("application/json");
+            System.out.println("input ===>" + input);
+            post.setEntity(input);
+            
+            HttpResponse response = client.execute(post);
+
+            LOG.info("dodeletesubaccounts response code ::: " + response.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            LOG.info("dodeletesubaccounts request" + result.toString());
             if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
                 return null;
             }
