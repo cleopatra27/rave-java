@@ -36,16 +36,21 @@ public class mobileMoney {
         // ReferenceUtil referenceutil = new ReferenceUtil();
         InetAddress localhost = InetAddress.getLocalHost();
         mobilemoneyPayload.setIP((localhost).toString());
-        System.out.println("IP is ===>" + localhost);
+        //System.out.println("IP is ===>" + localhost);
 
         Date date = new Date();
         //String ref = referenceutil.generateRandomString(10);
 
-        mobilemoneyPayload.setTxRef("MC" + date);
-        mobilemoneyPayload.setOrderRef("MC" + date);
+        if (mobilemoneyPayload.getTxRef() == null) {
+            mobilemoneyPayload.setTxRef("MC" + date);
+        }
+
+        if (mobilemoneyPayload.getOrderRef() == null) {
+            mobilemoneyPayload.setOrderRef("MC" + date);
+        }
+
 //        mobilemoneyPayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
 //        mobilemoneyPayload.setRedirect_url(raveConfig.REDIRECT_URL);
-
         mpesameta mpesameta = new mpesameta();
         mpesameta.setMetaname(mobilemoneyPayload.getMetaname());
         mpesameta.setMetavalue(mobilemoneyPayload.getMetavalue());
@@ -75,14 +80,14 @@ public class mobileMoney {
 
 //       String payload = mobilemoneyPayload.toString();
         String payload = new JSONObject(mobilemoneyPayload).toString();
-        System.out.println("payload is ===>" + payload);
+        //System.out.println("payload is ===>" + payload);
 
 //        String Encryteddata = tripledes.encryptData(payload, raveConfig.ENCRYPTION_KEY);
         String Encryteddata = tripledes.encryptData(payload, mobilemoneyPayload.getEncryption_key());
-        System.out.println("Encryteddata is ===>" + Encryteddata);
+        //System.out.println("Encryteddata is ===>" + Encryteddata);
 
         String response = paymentservices.doflwmobilemoney(Encryteddata, mobilemoneyPayload);
-        System.out.println("response ==>" + response);
+        //System.out.println("response ==>" + response);
         return response;
 
     }

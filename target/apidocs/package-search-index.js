@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.flutterwave.rave.java.config"},{"l":"com.flutterwave.rave.java.entry"},{"l":"com.flutterwave.rave.java.payload"},{"l":"com.flutterwave.rave.java.service"},{"l":"com.flutterwave.rave.java.util"},{"l":"com.flutterwave.rave.java.webhook"}]

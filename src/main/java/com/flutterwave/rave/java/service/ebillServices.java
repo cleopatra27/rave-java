@@ -31,21 +31,16 @@ public class ebillServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-             HttpPost post = null;
-
-            if ("1".equals(ebillpayload.getTest())) {
-                post =  new HttpPost((raveConfig.EBILLS_URL+"generateorder/"));
-            } else {
-                post = new HttpPost((raveConfig.EBILLS_URL+"generateorder/"));
-            }
+             HttpPost post  = new HttpPost((raveConfig.EBILLS_URL+"generateorder/"));
+           
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -80,21 +75,16 @@ public class ebillServices {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-             HttpPost post = null;
-
-            if ("1".equals(ebillpayload.getTest())) {
-                post =  new HttpPost((raveConfig.EBILLS_URL+"update/"));
-            } else {
-                post = new HttpPost((raveConfig.EBILLS_LIVE_URL+"update/"));
-            }
+             HttpPost post  = new HttpPost((raveConfig.EBILLS_LIVE_URL+"update/"));
+          
 
             LOG.info("doqrpayment response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 

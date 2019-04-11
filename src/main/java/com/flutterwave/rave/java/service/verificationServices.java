@@ -7,6 +7,8 @@ package com.flutterwave.rave.java.service;
 
 import com.flutterwave.rave.java.config.raveConfig;
 import com.flutterwave.rave.java.payload.bvnload;
+import com.flutterwave.rave.java.payload.transverifyPayload;
+import com.flutterwave.rave.java.payload.validateCardPayload;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,14 +36,9 @@ public class verificationServices {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             String seckey = raveConfig.SECRET_KEY;
             String bvn = bvnload.getBvn();
-            HttpGet httpGet = null;
-
-            if ("1".equals(bvnload.getTest())) {
-               httpGet= new HttpGet(raveConfig.BVN_SANDBOX + "/" + bvn + "?seckey=" + seckey + "");
-            } else {
-                httpGet = new HttpGet(raveConfig.BVN_LIVE + "/" + bvn + "?seckey=" + seckey + "");
-            }
+            HttpGet httpGet = new HttpGet(raveConfig.BVN_LIVE + "/" + bvn + "?seckey=" + seckey + "");
             
+
             httpGet.setHeader("Content-Type", "application/json");
 
             HttpResponse response = client.execute(httpGet);
@@ -70,18 +67,19 @@ public class verificationServices {
         return null;
     }
 
-    public String dotransverify(String params) {
+    public String dotransverify(String params, transverifyPayload transverifyPayload) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.TRANSACTION_VERIFICATION_URL));
+            HttpPost post  = new HttpPost((raveConfig.TRANSACTION_VERIFICATION_URL_LIVE));
+            
 
             LOG.info("dotransverify response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 
@@ -111,18 +109,18 @@ public class verificationServices {
         return null;
     }
 
-     public String docardvalidate(String params) {
+    public String docardvalidate(String params, validateCardPayload validatecardpayload) {
         StringBuilder result = new StringBuilder();
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 
-            HttpPost post = new HttpPost((raveConfig.VALIDATE_CHARGE_URL_SANDBOX));
+            HttpPost post = new HttpPost((raveConfig.VALIDATE_CHARGE_URL));
 
             LOG.info("docardvalidate response ::: " + params);
-            System.out.println("params ===>" + params);
+            //System.out.println("params ===>" + params);
 
             StringEntity input = new StringEntity(params);
             input.setContentType("application/json");
-            System.out.println("input ===>" + input);
+            //System.out.println("input ===>" + input);
             post.setEntity(input);
             HttpResponse response = client.execute(post);
 

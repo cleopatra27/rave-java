@@ -7,6 +7,8 @@ package com.flutterwave.rave.java.entry;
 
 import com.flutterwave.rave.java.config.raveConfig;
 import com.flutterwave.rave.java.payload.cardLoad;
+import com.flutterwave.rave.java.payload.validateCardPayload;
+import org.json.JSONObject;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -45,11 +47,40 @@ public class cardPaymentTest {
         cardload.setExpiryyear("22");
         cardload.setPublic_key(raveConfig.PUBLIC_KEY);
         cardload.setTest("1");
-        
-        String expected = "{\"request\":\"please enter pin\",\"suggested_auth\":\"PIN\"}";
-        String response = cardPayment.doflwcardpayment(cardload);
-        
-        assertEquals(expected,response);
-    }
 
+        String response = cardPayment.doflwcardpayment(cardload);
+        //System.out.println("response ==>" + response);
+
+        JSONObject myObject = new JSONObject(response);
+        //System.out.println("myObject ==>" + myObject);
+
+        if (myObject.optString("suggested_auth").equals("PIN")) {
+            //System.out.println("yekdmnkd ==>" );
+            //get PIN fom customer
+            cardload.setPin("3310");
+            cardload.setSuggested_auth("PIN");
+            String response_one = cardPayment.doflwcardpayment(cardload);
+
+            JSONObject iObject = new JSONObject(response_one);
+            JSONObject Object = iObject.optJSONObject("data");
+
+            String transaction_reference = Object.optString("flwRef");
+            //System.out.println("transaction_reference ==>" + transaction_reference);
+  
+            validateCardCharge validatecardcharge = new validateCardCharge();
+            validateCardPayload validatecardpayload = new validateCardPayload();
+            validatecardpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
+            validatecardpayload.setTransaction_reference(transaction_reference);
+            validatecardpayload.setOtp("12345");
+
+            response = validatecardcharge.doflwcardvalidate(validatecardpayload);
+            JSONObject Obdeject = new JSONObject(response);
+            String er = Obdeject.optString("status");
+            //System.out.println("response val==>" + er);
+
+            String expected = "success";
+            assertEquals(expected, er);
+        }
+
+    }
 }

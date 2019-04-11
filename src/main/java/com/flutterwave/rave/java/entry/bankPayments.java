@@ -25,8 +25,8 @@ import org.json.JSONObject;
  */
 @Path("/")
 public class bankPayments {
-    
-       @POST
+
+    @POST
     @Path("bank/v1")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces(MediaType.APPLICATION_JSON)
@@ -35,23 +35,26 @@ public class bankPayments {
         // ReferenceUtil referenceutil = new ReferenceUtil();
         InetAddress localhost = InetAddress.getLocalHost();
         bankpayload.setIP((localhost).toString());
-        
-         Date date = new Date();
+
+        Date date = new Date();
         //String ref = referenceutil.generateRandomString(10);
 
-        bankpayload.setTxRef("MC" + date);
-        bankpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
-        
+        if (bankpayload.getTxRef() == null) {
+            bankpayload.setTxRef("MC" + date);
+        }
+
+//        bankpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
         TripleDES tripledes = new TripleDES();
-       String encrytedsecretkey = tripledes.getKey(raveConfig.SECRET_KEY);
+//       String encrytedsecretkey = tripledes.getKey(raveConfig.SECRET_KEY);
+        String encrytedsecretkey = tripledes.getKey(bankpayload.getSECKEY());
 
 //       String payload = bankpayload.toString();
-String payload = new JSONObject(bankpayload).toString();
+        String payload = new JSONObject(bankpayload).toString();
         String Encryteddata = tripledes.encryptData(payload, encrytedsecretkey);
 
-        String response = paymentservices.doflwbankpayment(Encryteddata);
+        String response = paymentservices.doflwbankpayment(Encryteddata, bankpayload);
         return response;
 
     }
-    
+
 }
