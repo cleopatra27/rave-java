@@ -5,27 +5,17 @@
  */
 package com.flutterwave.rave.java.entry;
 
-import com.flutterwave.rave.java.config.raveConfig;
 import com.flutterwave.rave.java.payload.validateCardPayload;
 import com.flutterwave.rave.java.service.verificationServices;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
 
 /**
  *
  * @author cleopatradouglas
  */
- @Path("/")
 public class validateCardCharge {
     
-     @POST
-    @Path("card/verify/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String doflwcardvalidate(validateCardPayload validatecardpayload){
         
        // validatecardpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);

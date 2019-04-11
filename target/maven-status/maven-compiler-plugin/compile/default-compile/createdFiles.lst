@@ -37,7 +37,6 @@ com/flutterwave/rave/java/payload/fetchcardpayload.class
 com/flutterwave/rave/java/service/accountServices.class
 com/flutterwave/rave/java/entry/qrPayments.class
 com/flutterwave/rave/java/webhook/webhook.class
-com/flutterwave/rave/java/entry/api.class
 com/flutterwave/rave/java/payload/billLoad.class
 com/flutterwave/rave/java/service/transferServices.class
 com/flutterwave/rave/java/payload/webhookCustomerPayload.class

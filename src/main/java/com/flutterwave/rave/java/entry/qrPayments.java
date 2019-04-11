@@ -6,18 +6,12 @@
 package com.flutterwave.rave.java.entry;
 
 import com.flutterwave.rave.java.config.raveConfig;
-import com.flutterwave.rave.java.payload.bankPayload;
 import com.flutterwave.rave.java.payload.qrcodePayload;
 import com.flutterwave.rave.java.service.PaymentServices;
 import com.flutterwave.rave.java.util.TripleDES;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
 
 /**
@@ -25,14 +19,9 @@ import org.json.JSONObject;
  * @author cleopatradouglas
  *
  */
-@Path("/")
 
 public class qrPayments {
 
-    @POST
-    @Path("qrpay/v1")
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_JSON)
     public String doflwqrpayment(qrcodePayload qrcodepayload) throws UnknownHostException {
         PaymentServices paymentservices = new PaymentServices();
         // ReferenceUtil referenceutil = new ReferenceUtil();
