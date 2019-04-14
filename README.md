@@ -42,6 +42,13 @@ Add this dependency to your project's POM:
 </dependency>
 ```
 
+## Gradle users
+Add this dependency to your project's build file:
+
+```java
+compile("com.flutterwave:Rave-Java:1.03")
+```
+
 ---
 
 Usage:
