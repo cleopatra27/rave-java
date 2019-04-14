@@ -25,7 +25,10 @@ There are two ways to install this.
 
 ## METHOD 1:
 Download RAVE-JAVA
-Add jar file as a Module to your Java project:
+Download and add jar file as a Module to your Java project:
+
+Download from https://github.com/cleopatra27/rave-java/releases/latest
+
 On Intellij IDEA: File -> Project Structure -> Modules -> Dependencies Tab -> Add -> JARs or Directories -> Attach jar
 
 On Netbeans: Project properties -> Libraries -> Compile -> ADD JAR/folder -> Add Jar
