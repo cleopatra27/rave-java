@@ -16,6 +16,7 @@ Services implemented are:
 - Subscriptions
 - Bank payments
 - Split Payments
+- Subaccount Management
 
 ---
 How to install:
