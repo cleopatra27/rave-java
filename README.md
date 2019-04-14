@@ -1,4 +1,4 @@
-# RAVE JAVA 🍻
+# RAVE JAVA 🍻 [![Build Status](https://travis-ci.org/cleopatra27/rave-java.svg?branch=master)](https://travis-ci.org/cleopatra27/rave-java)
 ---
 Services implemented are:
 ---
