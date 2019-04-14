@@ -8,12 +8,16 @@ package com.flutterwave.rave.java.entry;
 import com.flutterwave.rave.java.payload.FLWmetaModel;
 import com.flutterwave.rave.java.payload.cardLoad;
 import com.flutterwave.rave.java.payload.cardPayload;
+import com.flutterwave.rave.java.payload.splitaddPayload;
 import com.flutterwave.rave.java.payload.suggestedload;
 import com.flutterwave.rave.java.service.PaymentServices;
 import com.flutterwave.rave.java.util.TripleDES;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -24,7 +28,6 @@ public class cardPayment {
 
     public String doflwcardpayment(cardLoad cardload) throws UnknownHostException {
         PaymentServices paymentservices = new PaymentServices();
-        // ReferenceUtil referenceutil = new ReferenceUtil();
         InetAddress localhost = InetAddress.getLocalHost();
         cardload.setIP((localhost).toString());
 
@@ -37,7 +40,6 @@ public class cardPayment {
 
         flwmetamodel.setMetaname(cardload.getMetaname());
         flwmetamodel.setMetavalue(cardload.getMetavalue());
-        // service_payload.setCountry(users.);
 
         cardPayload cardpayload = new cardPayload();
         cardpayload.setAmount(cardload.getAmount());
@@ -52,7 +54,6 @@ public class cardPayment {
         cardpayload.setFirstname(cardload.getFirstname());
         cardpayload.setIP(cardload.getIP());
         cardpayload.setLastname(cardload.getLastname());
-//        cardpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
         cardpayload.setPBFPubKey(cardload.getPublic_key());
         cardpayload.setPhonenumber(cardload.getPhonenumber());
         cardpayload.setRedirect_url(cardload.getRedirect_url());
@@ -67,21 +68,41 @@ public class cardPayment {
         cardpayload.setBillingzip(cardload.getBillingzip());
         cardpayload.setEncryption_key(cardload.getEncryption_key());
         cardpayload.setTest(cardload.getTest());
-        //  cardpayload.setSecret_key(cardload.getSecret_key());
+        
+            if (cardload.getSubaccounts() != null) {
+
+            JSONArray array = new JSONArray(cardload.getSubaccounts());
+
+            List<splitaddPayload> list = new ArrayList<>();
+
+            if (array != null) {
+
+                for (int i = 0; i < array.length(); i++) {
+                     JSONObject recordJSON = array.getJSONObject(i);
+                     
+                    splitaddPayload splitaddPayload = new splitaddPayload();
+                    splitaddPayload.setId(recordJSON.optString("id"));
+                    splitaddPayload.setTransaction_split_ratio(recordJSON.optString("transaction_split_ratio"));
+                    
+                    list.add(splitaddPayload);
+                }
+
+                }
+            cardpayload.setSubaccounts(list);
+            }
+            
+            if ("preauth".equals(cardload.getCharge_type())){
+                
+                cardpayload.setCharge_type("preauth");
+            }
 
         TripleDES tripledes = new TripleDES();
-//       String encrytedsecretkey = tripledes.getKey(raveConfig.SECRET_KEY);
 
-//       String payload = mobilemoneyPayload.toString();
         String payload = new JSONObject(cardpayload).toString();
-        ////System.out.println("payload is ===>" + payload);
 
-//        String Encryteddata = tripledes.encryptData(payload, raveConfig.ENCRYPTION_KEY);
         String Encryteddata = tripledes.encryptData(payload, cardpayload.getEncryption_key());
-        ////System.out.println("Encryteddata is ===>" + Encryteddata);
 
         String response = paymentservices.doflwcardpayment(Encryteddata, cardpayload);
-        //System.out.println("resss 2==>" + response);
 
         JSONObject myObject = new JSONObject(response);
         JSONObject Object = myObject.optJSONObject("data");
@@ -102,7 +123,6 @@ public class cardPayment {
                 response = new JSONObject(suggestedload).toString();
             }
         }
-        ////System.out.println("response ==>" + response);
         return response;
     }
 

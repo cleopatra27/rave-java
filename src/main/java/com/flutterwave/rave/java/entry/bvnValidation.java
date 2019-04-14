@@ -19,7 +19,6 @@ public class bvnValidation {
          verificationServices verificationServices = new verificationServices();
 
          String response = verificationServices.doBvnVerification(bvnload);
-//        return response;
        return new JSONObject(response).toString();
 }
 }

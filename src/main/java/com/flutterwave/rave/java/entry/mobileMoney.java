@@ -7,11 +7,15 @@ package com.flutterwave.rave.java.entry;
 
 import com.flutterwave.rave.java.payload.mobilemoneyPayload;
 import com.flutterwave.rave.java.payload.mpesameta;
+import com.flutterwave.rave.java.payload.splitaddPayload;
 import com.flutterwave.rave.java.service.PaymentServices;
 import com.flutterwave.rave.java.util.TripleDES;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -22,13 +26,10 @@ public class mobileMoney {
 
     public String domobilemoney(mobilemoneyPayload mobilemoneyPayload) throws UnknownHostException {
         PaymentServices paymentservices = new PaymentServices();
-        // ReferenceUtil referenceutil = new ReferenceUtil();
         InetAddress localhost = InetAddress.getLocalHost();
         mobilemoneyPayload.setIP((localhost).toString());
-        //System.out.println("IP is ===>" + localhost);
 
         Date date = new Date();
-        //String ref = referenceutil.generateRandomString(10);
 
         if (mobilemoneyPayload.getTxRef() == null) {
             mobilemoneyPayload.setTxRef("MC" + date);
@@ -38,8 +39,28 @@ public class mobileMoney {
             mobilemoneyPayload.setOrderRef("MC" + date);
         }
 
-//        mobilemoneyPayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
-//        mobilemoneyPayload.setRedirect_url(raveConfig.REDIRECT_URL);
+        if (mobilemoneyPayload.getSubaccounts() != null) {
+
+            JSONArray array = new JSONArray(mobilemoneyPayload.getSubaccounts());
+
+            List<splitaddPayload> list = new ArrayList<>();
+
+            if (array != null) {
+
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject recordJSON = array.getJSONObject(i);
+
+                    splitaddPayload splitaddPayload = new splitaddPayload();
+                    splitaddPayload.setId(recordJSON.optString("id"));
+                    splitaddPayload.setTransaction_split_ratio(recordJSON.optString("transaction_split_ratio"));
+
+                    list.add(splitaddPayload);
+                }
+
+            }
+            mobilemoneyPayload.setSubaccounts(list);
+        }
+
         mpesameta mpesameta = new mpesameta();
         mpesameta.setMetaname(mobilemoneyPayload.getMetaname());
         mpesameta.setMetavalue(mobilemoneyPayload.getMetavalue());
@@ -65,18 +86,12 @@ public class mobileMoney {
         }
 
         TripleDES tripledes = new TripleDES();
-//       String encrytedsecretkey = tripledes.getKey(raveConfig.SECRET_KEY);
 
-//       String payload = mobilemoneyPayload.toString();
         String payload = new JSONObject(mobilemoneyPayload).toString();
-        //System.out.println("payload is ===>" + payload);
 
-//        String Encryteddata = tripledes.encryptData(payload, raveConfig.ENCRYPTION_KEY);
         String Encryteddata = tripledes.encryptData(payload, mobilemoneyPayload.getEncryption_key());
-        //System.out.println("Encryteddata is ===>" + Encryteddata);
 
         String response = paymentservices.doflwmobilemoney(Encryteddata, mobilemoneyPayload);
-        //System.out.println("response ==>" + response);
         return response;
 
     }

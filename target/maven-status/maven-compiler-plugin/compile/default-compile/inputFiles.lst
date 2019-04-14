@@ -15,7 +15,9 @@
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/bulkdataPayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/service/billPaymentServices.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/bvnload.java
+/Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/splitaddPayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/ebills.java
+/Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/capturePayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/validateCardPayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/cardLoad.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/qrcodePayload.java
@@ -33,8 +35,8 @@
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/ebillpayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/withdrawcardpayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/service_payload.java
-/Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/settlement.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/suscriptionfetch.java
+/Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/actionPreauth.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/mobilemoneyPayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/cardPayment.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/subaccountpayload.java
@@ -45,7 +47,6 @@
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/bankPayments.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/mobileMoney.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/suggestedload.java
-/Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/service/settlementServices.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/cardPayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/service/transferServices.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/webhookEntityPayload.java
@@ -58,6 +59,7 @@
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/transValidation.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/service/accountServices.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/bvnValidation.java
+/Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/capturePreauth.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/bulkPayload.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/entry/validateCardCharge.java
 /Users/cleopatradouglas/NewFolder/ravejava/src/main/java/com/flutterwave/rave/java/payload/settlementpayload.java

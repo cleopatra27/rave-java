@@ -5,11 +5,41 @@
  */
 package com.flutterwave.rave.java.payload;
 
+import java.util.List;
+
 /**
  *
  * @author cleopatradouglas
  */
 public class cardPayload {
+
+    /**
+     * @return the charge_type
+     */
+    public String getCharge_type() {
+        return charge_type;
+    }
+
+    /**
+     * @param charge_type the charge_type to set
+     */
+    public void setCharge_type(String charge_type) {
+        this.charge_type = charge_type;
+    }
+
+    /**
+     * @return the subaccounts
+     */
+    public List<splitaddPayload> getSubaccounts() {
+        return subaccounts;
+    }
+
+    /**
+     * @param subaccounts the subaccounts to set
+     */
+    public void setSubaccounts(List<splitaddPayload> subaccounts) {
+        this.subaccounts = subaccounts;
+    }
 
     /**
      * @return the test
@@ -150,8 +180,8 @@ public class cardPayload {
     public void setBillingcountry(String billingcountry) {
         this.billingcountry = billingcountry;
     }
-    
-        /**
+
+    /**
      * @return the PBFPubKey
      */
     public String getPBFPubKey() {
@@ -408,12 +438,14 @@ public class cardPayload {
     private String pin;
     private String suggested_auth;
     private String billingzip;
-     private String billingcity;
-      private String billingaddress;
-       private String billingstate;
-        private String billingcountry;
-         private String secret_key;
+    private String billingcity;
+    private String billingaddress;
+    private String billingstate;
+    private String billingcountry;
+    private String secret_key;
     private String encryption_key;
     private String test;
-    
+        private String charge_type;
+    private List<splitaddPayload> subaccounts;
+
 }

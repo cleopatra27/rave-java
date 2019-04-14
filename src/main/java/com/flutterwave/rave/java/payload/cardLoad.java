@@ -5,11 +5,41 @@
  */
 package com.flutterwave.rave.java.payload;
 
+import java.util.List;
+
 /**
  *
  * @author cleopatradouglas
  */
 public class cardLoad {
+
+    /**
+     * @return the charge_type
+     */
+    public String getCharge_type() {
+        return charge_type;
+    }
+
+    /**
+     * @param charge_type the charge_type to set
+     */
+    public void setCharge_type(String charge_type) {
+        this.charge_type = charge_type;
+    }
+
+    /**
+     * @return the subaccounts
+     */
+    public List<splitaddPayload> getSubaccounts() {
+        return subaccounts;
+    }
+
+    /**
+     * @param subaccounts the subaccounts to set
+     */
+    public void setSubaccounts(List<splitaddPayload> subaccounts) {
+        this.subaccounts = subaccounts;
+    }
 
     /**
      * @return the test
@@ -432,5 +462,7 @@ public class cardLoad {
     private String secret_key;
     private String public_key;
     private String encryption_key;
+    private String charge_type;
+    private List<splitaddPayload> subaccounts;
 
 }

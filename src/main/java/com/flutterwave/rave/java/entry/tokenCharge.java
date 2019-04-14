@@ -21,26 +21,20 @@ public class tokenCharge {
 
     public String dotokenizedcharge(tokenChargePayload tokenchargepayload) throws UnknownHostException{
         
-       // tokenchargepayload.setSECKEY(raveConfig.SECRET_KEY);
        
         InetAddress localhost = InetAddress.getLocalHost();
         tokenchargepayload.setIP((localhost).toString());
         
          String payload = new JSONObject(tokenchargepayload).toString();
-        //System.out.println("payload is ===>" + payload);
-        
         
         PaymentServices paymentservices = new PaymentServices();
         
         String response = paymentservices.dotokencharge(payload, tokenchargepayload);
-        //System.out.println(response);
         return response;
     }
     
     
     public String doupdatetoken(tokenChargePayload tokenchargepayload){
-        
-        //tokenchargepayload.setSECKEY(raveConfig.SECRET_KEY);
         
         PaymentServices paymentservices = new PaymentServices();
         String response = paymentservices.dotokenupdate(tokenchargepayload);

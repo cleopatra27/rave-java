@@ -18,10 +18,7 @@ public class validateCardCharge {
     
     public String doflwcardvalidate(validateCardPayload validatecardpayload){
         
-       // validatecardpayload.setPBFPubKey(raveConfig.PUBLIC_KEY);
-        
          String payload = new JSONObject(validatecardpayload).toString();
-        //System.out.println("payload is ===>" + payload);
         
         verificationServices verificationservices = new verificationServices();
         String response = verificationservices.docardvalidate(payload, validatecardpayload);
