@@ -20,4 +20,4 @@ matrix:
     
 ## Build and release to maven central  
 script: 
-    mvn deploy -DskipTests=true -B -U -Prelease
+    mvn build -DskipTests=true -B -U -Prelease
