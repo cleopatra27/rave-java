@@ -2,8 +2,6 @@ sudo: required
 
 language: java
 
-TRAVIS_SECURE_ENV_VARS:true
-
 before_deploy:
    - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
    - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
@@ -11,6 +9,7 @@ before_deploy:
 before_install:
     - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
     - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+    condition: "( $TRAVIS_SECURE_ENV_VARS == true )
 
 matrix:
   include:
