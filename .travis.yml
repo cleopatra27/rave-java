@@ -18,6 +18,3 @@ matrix:
   allow_failures:
     - jdk: openjdk-ea
     
-## Build and release to maven central  
-script: 
-    mvn clean deploy --settings .maven.xml -DskipTests=true -B -U -Prelease
