@@ -13,9 +13,9 @@ matrix:
     - jdk: oraclejdk9
     - jdk: openjdk9
     - jdk: openjdk10
-    - jdk: openjdk11
     - jdk: openjdk-ea
   allow_failures:
+    - jdk: openjdk11
     - jdk: openjdk-ea
     
 ## Build and release to maven central  
