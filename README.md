@@ -15,6 +15,8 @@ Services implemented are:
 - PaymentPlan
 - Subscriptions
 - Bank payments
+- Split Payments
+- Subaccount Management
 
 ---
 How to install:
@@ -23,7 +25,10 @@ There are two ways to install this.
 
 ## METHOD 1:
 Download RAVE-JAVA
-Add jar file as a Module to your Java project:
+Download and add jar file as a Module to your Java project:
+
+Download from https://github.com/cleopatra27/rave-java/releases/latest
+
 On Intellij IDEA: File -> Project Structure -> Modules -> Dependencies Tab -> Add -> JARs or Directories -> Attach jar
 
 On Netbeans: Project properties -> Libraries -> Compile -> ADD JAR/folder -> Add Jar
@@ -36,8 +41,15 @@ Add this dependency to your project's POM:
 <dependency>
  <groupId>com.flutterwave</groupId>
     <artifactId>Rave-Java</artifactId>
-    <version>1.02</version>
+    <version>1.03</version>
 </dependency>
+```
+
+## Gradle users
+Add this dependency to your project's build file:
+
+```java
+compile("com.flutterwave:Rave-Java:1.03")
 ```
 
 ---
@@ -66,6 +78,8 @@ cardload.setExpiryyear(exp_year);
 cardload.setRedirect_url(redirect_url);
 cardload.setDevice_fingerprint(device_fingerprint);
 cardload.setEncryption_key(encryption_key);
+//if split payment set subaccount values
+//set charge_type to "preauth" if preauth
   
 String response = cardPayment.doflwcardpayment(cardload);
 
@@ -142,6 +156,7 @@ mobilemoneyPayload.setDevice_fingerprint(device_fingerprint);
 mobilemoneyPayload.setPayment_type(Payment_type);
 mobilemoneyPayload.setEncryption_key(encryption_key);
 mobilemoneyPayload.setPublic_key(pub_key);
+//if split payment set subaccount values
 
 String response = mobileMoney.domobilemoney(mobilemoneyPayload);
 
@@ -339,7 +354,6 @@ String response = refund.dorefund(refundpayload);
 ```
 
 ## Tokenized Charge
-
 Sample code for charging tokenised cards
 
 ```java
@@ -365,9 +379,8 @@ tokenChargePayload tokenchargepayload = new tokenChargePayload():
 tokenchargepayload.setEmail(email);
 tokenchargepayload.setToken(token);
 tokenchargepayload.setSECKEY(Seckey);
-```
-
 String response = tokencharge.dotokenizedcharge(tokenchargepayload);
+```
 
 ## Payment plan
 Sample code to create payment plan
@@ -382,7 +395,6 @@ pamentplancreatepayload.setinterval(interval);
 pamentplancreatepayload.setduration(duration);
 
 String response = paymentplan.docreatepayment(pamentplancreatepayload);
-
 ```
 
 Sample code to list payment plan
@@ -394,7 +406,6 @@ paymentplanfetch.setid(id);
 paymentplanfetch.setq(q);
 
 String response = paymentplan.dopaymentplanlist(paymentplanfetch);
-
 ```
 
 Sample code to cancel payment plan
@@ -405,7 +416,6 @@ paymentplanfetch.setid(id);
 paymentplanfetch.setSeckey(seckey);
 
 String response = paymentplan.dopaymentplanlist(paymentplanfetch);
-
 ```
 
 ## Verify Transactions
@@ -473,4 +483,70 @@ subaccountpayload.setSECKEY(sckey);
 subaccountpayload.setId(id);
 
 String response = subaccounts.dosubaccountsdelete(subaccountpayload);
+```
+
+## Bank Account
+Sample code for bank account payment
+
+```java
+bankPayments bankPayments = new bankPayments();
+bankPayload bankpayload = new bankPayload();
+bankpayload.setPBFPubKey(PBFPubKey);
+bankpayload.setaccountbank(accountbank);
+bankpayload.setaccountnumber(accountnumber);
+bankpayload.setcurrency(currency);
+bankpayload.setpayment_type(payment_type);
+bankpayload.setcountry(country):
+bankpayload.setamount(amount);
+bankpayload.setemail(email);
+bankpayload.setpasscode(passcode);
+bankpayload.setbvn(bvn);
+bankpayload.setphonenumber(phonenumber):
+bankpayload.setfirstname(firstname);
+bankpayload.setlastname(lastname);
+bankpayload.settxRef(txRef);
+bankpayload.setdevice_fingerprint(device_fingerprint);
+bankpayload.setredirect_url(redirect_url);
+bankpayload.setSECKEY(SECKEY):
+//if split payment set subaccount values
+
+String response = bankPayments.doflwbankpayment(bankpayload);
+
+//validate payment
+//then verify payment
+transValidation transValidation = new transValidation();
+transverifyPayload transverifyPayload = new transverifyPayload();
+transverifyPayload.settxref(txref);
+transverifyPayload.setSECKEY(SECKEY);
+
+String response = transValidation.bvnvalidate(transverifyPayload);
+```
+
+## Pre-Auth
+
+Sample code for pre-auth capture
+
+```java
+capturePreauth capturePreauth = new capturePreauth();
+capturePayload capturepayload = new capturepayload();
+capturepayload.setSECKEY(SECKEY);
+capturepayload.setflwRef(flwRef);
+capturepayload.setamount(amount);
+
+String response = capturePreauth.docapture(capturepayload);
+
+```
+
+Sample code for pre-auth return or void
+
+```java
+actionPreauth actionPreauth = new actionPreauth();
+capturePayload capturepayload = new capturepayload();
+capturepayload.setSECKEY(SECKEY);
+capturepayload.setref(ref);
+capturepayload.setaction(action);
+//action can be refund or void
+
+String response = actionPreauth.docapture(capturepayload);
+
 ```
