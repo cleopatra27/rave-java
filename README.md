@@ -1,4 +1,4 @@
-# RAVE JAVA 🍻 [![Build Status](https://travis-ci.org/cleopatra27/rave-java.svg?branch=master)](https://travis-ci.org/cleopatra27/rave-java)
+# RAVE JAVA 🍻 [![Build Status](https://travis-ci.org/cleopatra27/rave-java.svg?branch=master)](https://travis-ci.org/cleopatra27/rave-java)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ---
 Services implemented are:
 ---
