@@ -20,7 +20,6 @@ public class Refund {
     public String dorefund(refundPayload refundpayload) {
         PaymentServices paymentservices = new PaymentServices();
 
-      // refundpayload.setSeckey(raveConfig.SECRET_KEY);
 
        String payload = new JSONObject(refundpayload).toString();
         String response = paymentservices.dorefund(payload, refundpayload);

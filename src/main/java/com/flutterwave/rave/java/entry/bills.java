@@ -11,14 +11,12 @@ import com.flutterwave.rave.java.payload.billLoad;
 import com.flutterwave.rave.java.payload.service_payload;
 import com.flutterwave.rave.java.service.billPaymentServices;
 import com.flutterwave.rave.java.util.raveUtil;
-import javax.ws.rs.Path;
 import org.json.JSONObject;
 
 /**
  *
  * @author cleopatradouglas
  */
-@Path("/")
 public class bills {
 
     public String dobillpayment(BillModel billmodel) {
@@ -41,7 +39,6 @@ public class bills {
         service_payload.setCountry("NG");
 
         billLoad billload = new billLoad();
-//            billload.setSecret_key(raveConfig.SECRET_KEY);
         billload.setSecret_key(billmodel.getSecret_key());
         billload.setService(raveConfig.BUY_SERVICE);
         billload.setService_channel(raveConfig.SERVICE_CHANNEL);

@@ -21,7 +21,6 @@ public class transfers {
     public String dotransfer(transferPayload transferPayload) {
         transferServices transferServices = new transferServices();
 
-//        transferPayload.setSeckey(raveConfig.SECRET_KEY);
         if (transferPayload.getReference() == null) {
             Date date = new Date();
             transferPayload.setReference("MC" + date);

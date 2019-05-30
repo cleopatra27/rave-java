@@ -67,11 +67,6 @@ public class withdrawcardpayload {
         this.secret_key = secret_key;
     }
     
-//    {
-//	"card_id": "c7623008-c2d1-41ba-b5d7-3835fd76254b",
-//	"amount": "9",
-//	"secret_key": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
-//}
     
     private String card_id;
     private String amount;

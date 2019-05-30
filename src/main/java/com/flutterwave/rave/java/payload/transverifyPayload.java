@@ -53,11 +53,6 @@ public class transverifyPayload {
         this.SECKEY = SECKEY;
     }
     
-//    {
-//	"txref": "MC-09182829",
-//	"SECKEY": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
-//}
-    
     private String txref;
     private String SECKEY;
     private String test;

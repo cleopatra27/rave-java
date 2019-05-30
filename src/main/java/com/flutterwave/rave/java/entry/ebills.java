@@ -24,7 +24,6 @@ public class ebills {
     public String doebillscreate(ebillpayload ebillpayload) {
         ebillServices ebillServices = new ebillServices();
         
-//        ebillpayload.setSECKEY(raveConfig.SECRET_KEY);
         ebillpayload.setCountry("NG");
         
         String payload = new JSONObject(ebillpayload).toString();
@@ -36,7 +35,6 @@ public class ebills {
     public String doebillsupdate(ebillpayload ebillpayload) {
         ebillServices ebillServices = new ebillServices();
         
-//        ebillpayload.setSECKEY(raveConfig.SECRET_KEY);
         ebillpayload.setCountry("NG");
         
         String payload = new JSONObject(ebillpayload).toString();

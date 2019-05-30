@@ -23,7 +23,6 @@ public class virtualCards {
     public String dovirtualcardcreate(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
-//        virtualcardpayload.setSecret_key(raveConfig.SECRET_KEY);
         
         if (virtualcardpayload.getCurrency().equals("USD")){
             virtualcardpayload.setBilling_country("US");
@@ -41,7 +40,6 @@ public class virtualCards {
     public String dovirtualcardsearch(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
-//        virtualcardpayload.setSecret_key(raveConfig.SECRET_KEY);
         
         String payload = new JSONObject(virtualcardpayload).toString();
         String response = virtualcardservices.dovirtualcardsearch(payload, virtualcardpayload);
@@ -51,7 +49,6 @@ public class virtualCards {
     public String dovirtualcardget(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
-//        virtualcardpayload.setSecret_key(raveConfig.SECRET_KEY);
         
         String payload = new JSONObject(virtualcardpayload).toString();
         String response = virtualcardservices.dovirtualcardget(payload, virtualcardpayload);
@@ -61,7 +58,6 @@ public class virtualCards {
     public String dovirtualcardterminate(virtualcardpayload virtualcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
-//        virtualcardpayload.setSecret_key(raveConfig.SECRET_KEY);
         
         String response = virtualcardservices.dovirtualcardterminate(virtualcardpayload);
         return response;
@@ -70,7 +66,6 @@ public class virtualCards {
     public String dovirtualcardfund(fundcardpayload fundcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
-//        fundcardpayload.setSecret_key(raveConfig.SECRET_KEY);
         
         String payload = new JSONObject(fundcardpayload).toString();
         String response = virtualcardservices.dovirtualcardfund(payload, fundcardpayload);
@@ -88,7 +83,6 @@ public class virtualCards {
     public String dovirtualcardfwithdraw(withdrawcardpayload withdrawcardpayload) {
         virtualcardServices virtualcardservices = new virtualcardServices();
         
-        withdrawcardpayload.setSecret_key(raveConfig.SECRET_KEY);
         
         String payload = new JSONObject(withdrawcardpayload).toString();
         String response = virtualcardservices.dovirtualcardfwithdraw(payload, withdrawcardpayload);

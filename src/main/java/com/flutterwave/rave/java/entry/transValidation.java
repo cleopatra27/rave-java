@@ -18,11 +18,9 @@ public class transValidation {
     public String bvnvalidate(transverifyPayload transverifyPayload) {
         verificationServices verificationServices = new verificationServices();
 
-//        transverifyPayload.setSECKEY(raveConfig.SECRET_KEY);
-        
          String payload = new JSONObject(transverifyPayload).toString();
         String response = verificationServices.dotransverify(payload, transverifyPayload);
-//        return response;
+
         return new JSONObject(response).toString();
     }
 

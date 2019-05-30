@@ -5,11 +5,27 @@
  */
 package com.flutterwave.rave.java.payload;
 
+import java.util.List;
+
 /**
  *
  * @author cleopatradouglas
  */
 public class mobilemoneyPayload {
+
+    /**
+     * @return the subaccounts
+     */
+    public List<splitaddPayload> getSubaccounts() {
+        return subaccounts;
+    }
+
+    /**
+     * @param subaccounts the subaccounts to set
+     */
+    public void setSubaccounts(List<splitaddPayload> subaccounts) {
+        this.subaccounts = subaccounts;
+    }
 
     /**
      * @return the test
@@ -418,5 +434,6 @@ public class mobilemoneyPayload {
     private String secret_key;
     private String public_key;
     private String encryption_key;
+    private List<splitaddPayload> subaccounts;
     
 }

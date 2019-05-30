@@ -149,5 +149,87 @@ public class verificationServices {
         }
         return null;
     }
+    
+     public String docapture(String params) {
+        StringBuilder result = new StringBuilder();
+        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
+
+            HttpPost post = new HttpPost((raveConfig.CAPTURE_URL));
+
+            LOG.info("docapture response ::: " + params);
+            //System.out.println("params ===>" + params);
+
+            StringEntity input = new StringEntity(params);
+            input.setContentType("application/json");
+            //System.out.println("input ===>" + input);
+            post.setEntity(input);
+            HttpResponse response = client.execute(post);
+
+            LOG.info("docapture response code ::: " + response.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            LOG.info("docapture request" + result.toString());
+            if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
+                return null;
+            }
+            if (response.getStatusLine().getStatusCode() == 500) {
+                return "there is an error with the data";
+            } else {
+                return result.toString();
+            }
+
+        } catch (UnsupportedEncodingException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        } catch (IOException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        }
+        return null;
+    }
+     
+      public String doaction(String params) {
+        StringBuilder result = new StringBuilder();
+        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
+
+            HttpPost post = new HttpPost((raveConfig.VOID_URL));
+
+            LOG.info("docapture response ::: " + params);
+            //System.out.println("params ===>" + params);
+
+            StringEntity input = new StringEntity(params);
+            input.setContentType("application/json");
+            //System.out.println("input ===>" + input);
+            post.setEntity(input);
+            HttpResponse response = client.execute(post);
+
+            LOG.info("docapture response code ::: " + response.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+
+            String line;
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            LOG.info("docapture request" + result.toString());
+            if (!String.valueOf(response.getStatusLine().getStatusCode()).startsWith("2") && !response.getEntity().getContentType().getValue().contains("json")) {
+                return null;
+            }
+            if (response.getStatusLine().getStatusCode() == 500) {
+                return "there is an error with the data";
+            } else {
+                return result.toString();
+            }
+
+        } catch (UnsupportedEncodingException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        } catch (IOException ex) {
+            LOG.error(Arrays.toString(ex.getStackTrace()));
+        }
+        return null;
+    }
 
 }
