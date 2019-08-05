@@ -14,9 +14,6 @@ public class raveConfig {
     public static final String LIVE_URL = "https://api.ravepay.co/v2/services/confluence";
     public static final String CAPTURE_URL = "https://api.ravepay.co/flwv3-pug/getpaidx/api/capture";
     public static final String VOID_URL = "https://api.ravepay.co/flwv3-pug/getpaidx/api/refundorvoid";
-    public static final String SECRET_KEY = "FLWSECK_TEST-379d451f6b2fa79eb1ca9aeed7745187-X";
-    public static final String PUBLIC_KEY = "FLWPUBK_TEST-be50a9ccb60b7e1e1abc944552cf2512-X";
-    public static final String ENCRYPTION_KEY = "FLWSECK_TEST6d4fddc11a53";
     public static final String BUY_SERVICE = "fly_buy";
     public static final String SERVICE_METHOD_POST = "post";
     public static final String EBILLS_URL = "https://api.ravepay.co/flwv3-pug/getpaidx/api/ebills/";
