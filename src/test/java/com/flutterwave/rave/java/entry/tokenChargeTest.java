@@ -44,23 +44,7 @@ public class tokenChargeTest {
      */
     @Test
     public void testDotokenizedcharge() throws UnknownHostException {
-        tokenCharge tokencharge = new tokenCharge();
-        tokenChargePayload tokenchargepayload = new tokenChargePayload();
-        tokenchargepayload.setCurrency("NGN");
-        tokenchargepayload.setToken("flw-t0-db3e12d3a7938b72f243acfefe02f3db-m03k");
-        tokenchargepayload.setAmount("1.00");
-        tokenchargepayload.setEmail("user@gmail.com");
-        tokenchargepayload.setFirstname("cleopatra");
-        tokenchargepayload.setLastname("douglas");
-          Date date = new Date();
-        tokenchargepayload.setTxRef("MC" + date);
-        tokenchargepayload.setSECKEY(raveConfig.SECRET_KEY);
-        tokenchargepayload.setTest("1");
 
-        String expected = "{\"status\":\"error\",\"message\":\"ERR\",\"data\":{\"is_error\":true,\"code\":\"That token has expired\",\"message\":\"ERR\"}}";
-        String response = tokencharge.dotokenizedcharge(tokenchargepayload);
-        
-        assertEquals(expected,response);
     }
 
     /**
