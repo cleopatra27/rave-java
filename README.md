@@ -244,6 +244,24 @@ bulkPayload.setBulk_data(list);
 String response = transfers.dobulktransfer(bulkPayload);
 ```
 
+# Retrive Bulk Transfer Status (not avaliable in lib yet)
+```java
+transfers transfers = new transfers();
+String response = transfers.doRetriveBulkStatus(seckey, batch_id);
+```
+
+# Retrive Single Transfer Status (not avaliable in lib yet)
+```java
+transfers transfers = new transfers();
+String response = transfers.doRetriveSingleStatus(seckey, ref);
+```
+
+# Get BankList (not avaliable in lib yet)
+```java
+transfers transfers = new transfers();
+String response = transfers.doGetBankList(country, publickey);
+```
+
 ## QR code
 ```java
 qrPayments qrPayments = new qrPayments();
