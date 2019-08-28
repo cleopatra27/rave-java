@@ -16,6 +16,7 @@ Services implemented are:
 - Subscriptions
 - Bank payments
 - Split Payments
+- Transfers
 - Subaccount Management
 
 ---
@@ -161,6 +162,86 @@ mobilemoneyPayload.setPublic_key(pub_key);
 String response = mobileMoney.domobilemoney(mobilemoneyPayload);
 
 return response; 
+```
+
+## Transfers(African Banks)
+```java
+transfers transfers = new transfers();
+transferPayload transferPayload = new transferPayload();
+transferPayload.setAccount_bank(account_bank);
+transferPayload.setAccount_number(account_number);
+transferPayload.setAmount(amount);
+transferPayload.setSeckey(seckey);
+transferPayload.setNarration(narration);
+transferPayload.setCurrency(currency);
+transferPayload.setReference(reference);
+transferPayload.setBeneficiary_name(beneficiary_name);
+transferPayload.setDestination_branch_code(destination_branch_code);
+
+String response = transfers.dotransfer(transferPayload);
+```
+
+## Transfers(International Banks) (not avaliable in lib yet)
+```java
+transfers transfers = new transfers();
+transferPayload transferPayload = new transferPayload();
+transferPayload.setAccount_bank(account_bank);
+transferPayload.setAccount_number(account_number);
+transferPayload.setAmount(amount);
+transferPayload.setSeckey(seckey);
+transferPayload.setNarration(narration);
+transferPayload.setCurrency(currency);
+transferPayload.setReference(reference);
+transferPayload.setBeneficiary_name(beneficiary_name);
+transferPayload.setDestination_branch_code(destination_branch_code);
+
+List<metaTransferpayload> list = new ArrayList<>();
+
+//please change forloop to suit your need
+for (int i = 0; i <=0; i++) {
+metaTransferpayload metaTransferpayload = new metaTransferpayload();
+metaTransferpayload.setAccountNumber(AccountNumber);
+metaTransferpayload.setRoutingNumber(RoutingNumber);
+metaTransferpayload.setSwiftCode(SwiftCode);
+metaTransferpayload.setBankName(BankName);
+metaTransferpayload.setBeneficiaryName(BeneficiaryName);
+metaTransferpayload.setBeneficiaryAddress(BeneficiaryAddress);
+metaTransferpayload.setBeneficiaryCountry(BeneficiaryCountry);
+
+list.add(metaTransferpayload);
+}
+
+//add metaTransferpayload to transferPayload
+transferPayload.setMeta(list);
+
+String response = transfers.dotransfer(transferPayload);
+```
+
+## Bulk Transfer (not avaliable in lib yet)
+```java
+transfers transfers = new transfers();
+bulkPayload bulkPayload = new bulkPayload();
+List<bulkdataPayload> list = new ArrayList<>();
+bulkPayload.setSeckey(seckey);
+bulkPayload.setTitle(title);
+
+//please change forloop to suit your need
+for (int i = 0; i <=0; i++) {
+bulkdataPayload bulkdataPayload = new bulkdataPayload();
+bulkdataPayload.setBank(Bank);
+bulkdataPayload.setAccount_number(Account_number);
+bulkdataPayload.setAmount(Amount);
+bulkdataPayload.setCurrency(Currency);
+bulkdataPayload.setNarration(Narration);
+bulkdataPayload.setReference(reference);
+
+list.add(bulkdataPayload);
+}
+
+//add bulkdataPayload to bulkPayload
+bulkPayload.setBulk_data(list);
+
+String response = transfers.dobulktransfer(bulkPayload);
 ```
 
 ## QR code
