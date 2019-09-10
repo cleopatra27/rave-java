@@ -125,7 +125,6 @@ validateCardCharge validatecardcharge = new validateCardCharge();
 validateCardPayload validatecardpayload = new validateCardPayload();
 validatecardpayload.setPBFPubKey(PBFPubKey);
 validatecardpayload.setTransaction_reference(transaction_reference);
-validatecardpayload.setOtp(OTP);
   
 response = validatecardcharge.doflwcardvalidate(validatecardpayload);
 }
