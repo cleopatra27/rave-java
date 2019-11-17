@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
  <groupId>com.flutterwave</groupId>
     <artifactId>Rave-Java</artifactId>
-    <version>1.03</version>
+    <version>1.04</version>
 </dependency>
 ```
 
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```java
-compile("com.flutterwave:Rave-Java:1.03")
+compile("com.flutterwave:Rave-Java:1.04")
 ```
 
 ---
