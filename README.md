@@ -181,7 +181,7 @@ transferPayload.setDestination_branch_code(destination_branch_code);
 String response = transfers.dotransfer(transferPayload);
 ```
 
-## Transfers(International Banks) (not avaliable in lib yet)
+## Transfers
 ```java
 transfers transfers = new transfers();
 transferPayload transferPayload = new transferPayload();
@@ -217,7 +217,7 @@ transferPayload.setMeta(list);
 String response = transfers.dotransfer(transferPayload);
 ```
 
-## Bulk Transfer (not avaliable in lib yet)
+## Bulk Transfer
 ```java
 transfers transfers = new transfers();
 bulkPayload bulkPayload = new bulkPayload();
@@ -244,19 +244,32 @@ bulkPayload.setBulk_data(list);
 String response = transfers.dobulktransfer(bulkPayload);
 ```
 
-# Retrive Bulk Transfer Status (not avaliable in lib yet)
+# Retrive Bulk Transfer Status 
 ```java
 transfers transfers = new transfers();
 String response = transfers.doRetriveBulkStatus(seckey, batch_id);
 ```
 
-# Retrive Single Transfer Status (not avaliable in lib yet)
+# Retrive Single Transfer Status 
 ```java
 transfers transfers = new transfers();
 String response = transfers.doRetriveSingleStatus(seckey, ref);
 ```
 
-# Get BankList (not avaliable in lib yet)
+# Account Resolve 
+```java
+AccountResolvePayload AccountResolvePayload = new AccountResolvePayload();
+
+AccountResolvePayload.setCountry(country);
+AccountResolvePayload.setCurrency(currency);
+AccountResolvePayload.setDestbankcode(code);
+AccountResolvePayload.setPBFPubKeypublickey);
+AccountResolvePayload.setRecipientaccount(account);
+        
+String response = new AccountResolve().doAccountResolve(AccountResolvePayload);
+```
+
+# Get BankList 
 ```java
 transfers transfers = new transfers();
 String response = transfers.doGetBankList(country, publickey);
